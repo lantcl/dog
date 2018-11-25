@@ -2,22 +2,11 @@
 
 body { 
   background-color: #FFFBF3;
-  display: grid;
-  grid-template-areas: 
-    "header header header"
-    "subhead subhead subhead"
-    "nav main side"
-    "footer footer footer";
-/*  grid-template-rows: 80px 1fr 70px;  
-  grid-template-columns: 20% 1fr 15%;*/
-  grid-row-gap: 0px;
-  grid-column-gap: 10px;
-  margin: 0; 
   }  
-header, footer, main, nav, div {
+/*header, footer, main, nav, div {
   padding: 1.2em;
   text-align: center;
-  }
+  }*/
 
 h1{
   color: #D09171;
@@ -39,6 +28,7 @@ header {
 	height: 200px;
   display: inline-flex;
   }
+
 footer {
   grid-area: footer;
   background-color: #071F35;
@@ -53,18 +43,30 @@ footer {
 	height: 75px;	
 }
 
-#main { 
-  grid-area: main;
-  background-color: #071F35;      
-  }
-#nav { 
-  grid-area: nav; 
-  background-color: #071F35;
-  }
-#side { 
-  grid-area: side; 
-  background-color: #071F35;
-  } 
+
+.clock{
+    display: table; 
+    margin: 50px auto;
+    background: lightgray;
+    height: 400px;
+    width: 400px;
+}
+
+.middle {display: table-cell; vertical-align: middle;}
+
+.circle{
+  margin: auto;
+  border: solid 10px #6FC7B5;
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+}
+
+/*.circle .circle{
+    width: 15px;
+    height: 15px;
+    margin-top: 130px;
+}*/
 
 #logo {
   width:200px;

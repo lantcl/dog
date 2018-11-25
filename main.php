@@ -56,10 +56,17 @@ $user = $row->fetch();
             <h3>Notice Goes here</h3>
             <h3><span id="datetime"></span></h3>
         </section>
-
+        
         <section id ="main">
             <h3><span id="today"></span></h3>
-            <p>Clock goes here</p>
+            <div class = "clock">
+                <div class="middle">
+                    <div class="circle"></div>
+                </div>
+<!--                 <img class= "circle" src="assets/clockborder.svg" alt="walky talky clocky">
+                <img class= "middle" src="assets/clockcenter.svg" alt="walky talky clocky">
+                <img id= "clockadd" src="assets/clockadd.svg" alt="walky talky clocky"> -->
+            </div>
         </section>
 
         <section id="side">
