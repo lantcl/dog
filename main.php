@@ -1,4 +1,26 @@
+<?php 
+session_start();
 
+$userid = $_SESSION['id'];
+
+$dsn = "mysql:host=localhost;dbname=lantc_dog;charset=utf8mb4";
+$dbusername = "lantc";
+$dbpassword = "NkXHus3h!6V";
+ 
+$pdo = new PDO($dsn, $dbusername, $dbpassword);
+
+$row = $pdo->prepare("SELECT * FROM `users` WHERE id = $userid");
+$row->execute();
+
+$stmt = $pdo->prepare("SELECT `id`, MAX(`time`) AS most_recent_walk FROM `walks` GROUP BY id");
+$stmt->execute();
+
+$lastwalk = $stmt->fetch();
+$user = $row->fetch();
+
+?>
+
+<!doctype html>
 <html>
     <head>
         <title>Walky-Talky</title>
@@ -6,11 +28,17 @@
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
     </head>
-    <body>
-        <header>        
-            <a href = "#"><img src="#" alt="Dog Logo" style="width:100px"></a>
-            <p>Last Walk goes here</p>
-            <p>profile link</p>
+    <body onload="startTime()">
+        <header>
+        <section id="head">        
+            <a href = "main.php"><img id= "logo" src="assets/logo.svg" alt="walky talky logo"></a>
+            <h1>Last Walk <?php echo($lastwalk["most_recent_walk"]);?></h1>
+            <?php if($_SESSION['logged-in'] == true){?>
+            <a href = "user-profile.php"><img id="usericon" src="assets/<?php echo($user["profilepic"]);?>" alt="profile icon"></a>
+        <?php } else {?>
+            <h2><a href = "login.php"></a>Log In</h2>
+        <?php } ?>
+        </section>
         </header>
         <section id="nav">
             <nav>
@@ -25,11 +53,12 @@
         </section>
 
         <section id="subhead">         
-            <p>Notice Goes here</p>
-            <p>Current Time Goes here</p>
+            <h3>Notice Goes here</h3>
+            <h3><span id="datetime"></span></h3>
         </section>
 
         <section id ="main">
+            <h3><span id="today"></span></h3>
             <p>Clock goes here</p>
         </section>
 

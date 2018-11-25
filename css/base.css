@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
 
 body { 
   background-color: #FFFBF3;
@@ -12,21 +13,38 @@ body {
   grid-row-gap: 0px;
   grid-column-gap: 10px;
   margin: 0; 
-  background-image: url(../party.svg);
   }  
 header, footer, main, nav, div {
   padding: 1.2em;
   text-align: center;
   }
 
+h1{
+  color: #D09171;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: normal;
+  letter-spacing: 2px;
+}
+
+h3{
+  color: #6FC7B5;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: normal;
+  letter-spacing: 2px;
+}
+
 header {
 	grid-area: header;
 	background-color: #071F35;
 	height: 200px;
+  display: inline-flex;
   }
 footer {
   grid-area: footer;
   background-color: #071F35;
+  bottom:0px;
+  position: fixed;
+  width: 100%;
   }
 
 #subhead{
@@ -48,16 +66,16 @@ footer {
   background-color: #071F35;
   } 
 
-/* Stack the layout on small devices/viewports. */
-@media all and (max-width: 575px) {
-  body { 
-    grid-template-areas: 
-      "header"
-      "main"
-      "side"
-      "nav"
-      "footer";
-    grid-template-rows: 80px 1fr 70px 1fr 70px;  
-    grid-template-columns: 1fr;
- }
+#logo {
+  width:200px;
+}
+
+#usericon {
+  width:75px;
+  border-radius: 50%;
+}
+
+#head{
+  display: inline-flex;
+  right: 0px;
 }
