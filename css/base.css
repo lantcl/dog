@@ -3,10 +3,6 @@
 body { 
   background-color: #FFFBF3;
   }  
-/*header, footer, main, nav, div {
-  padding: 1.2em;
-  text-align: center;
-  }*/
 
 h1{
   color: #D09171;
@@ -23,26 +19,44 @@ h3{
 }
 
 header {
-	grid-area: header;
 	background-color: #071F35;
-	height: 200px;
-  display: inline-flex;
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
   }
 
 footer {
-  grid-area: footer;
   background-color: #071F35;
   bottom:0px;
   position: fixed;
   width: 100%;
   }
 
-#subhead{
-	background-color: #0B5F64;
-	grid-area: subhead;
-	height: 75px;	
+a{
+  text-decoration: none;
+  color: #D09171;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: normal;
+  letter-spacing: 2px; 
 }
 
+li{
+  list-style: none;
+}
+
+#subhead{
+	background-color: #0B5F64;
+  display: flex;
+  justify-content: space-between;
+	height: 75px;	
+  padding: 10px 40px 0px 40px;
+}
+
+#footernav{
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 40px 10px 40px;
+}
 
 .clock{
     display: table; 
@@ -62,22 +76,58 @@ footer {
   height: 300px;
 }
 
-/*.circle .circle{
-    width: 15px;
-    height: 15px;
-    margin-top: 130px;
-}*/
-
-#logo {
-  width:200px;
-}
-
 #usericon {
   width:75px;
   border-radius: 50%;
 }
 
-#head{
-  display: inline-flex;
-  right: 0px;
+#logo{
+  color: #6FC7B5;
+  font-weight: bold; 
+  font-size: 1.2em;
+}
+
+#daynav{
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 400px 0px 400px;
+}
+
+.arrowbutton{
+  width:30px;
+}
+
+/*  Menu */
+.dropdown {
+    position: relative;
+    display: flex;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #0B5F64;
+  min-width: 160px;
+  z-index: 1;
+  top: 60px;
+  left: -40px;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #6FC7B5}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
 }
