@@ -1,13 +1,15 @@
-
 <?php 
+session_start();
 
-$dsn = "mysql:host=localhost; dbname=lantc_dog; charset=utf8mb4";
+$userid = $_SESSION['id'];
+
+$dsn = "mysql:host=localhost;dbname=lantc_dog;charset=utf8mb4";
 $dbusername = "lantc";
-$dbpassword = "thisisapassword!";
+$dbpassword = "NkXHus3h!6V";
 
 $pdo = new PDO($dsn, $dbusername, $dbpassword); 
 
-$stmt = $pdo->prepare("SELECT * FROM `walkhistory`");
+$stmt = $pdo->prepare("SELECT * FROM `walks`");
 
 $stmt->execute();
 ?>

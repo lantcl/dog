@@ -9,13 +9,15 @@ h1{
   font-family: 'Fjalla One', sans-serif;
   font-weight: normal;
   letter-spacing: 2px;
+  font-size: 2em;
 }
 
-h3{
+h2{
   color: #6FC7B5;
   font-family: 'Fjalla One', sans-serif;
   font-weight: normal;
   letter-spacing: 2px;
+  font-size: 1.5em;
 }
 
 header {
@@ -30,6 +32,7 @@ footer {
   bottom:0px;
   position: fixed;
   width: 100%;
+  left:0px;
   }
 
 a{
@@ -42,6 +45,20 @@ a{
 
 li{
   list-style: none;
+  font-size: 1.5em;
+}
+
+.button {
+  background-color: #0B5F64;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  color: #D09171;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: normal;
+  letter-spacing: 2px;
 }
 
 #subhead{
@@ -58,22 +75,9 @@ li{
   padding: 10px 40px 10px 40px;
 }
 
-.clock{
-    display: table; 
-    margin: 50px auto;
-    background: lightgray;
-    height: 400px;
-    width: 400px;
-}
-
-.middle {display: table-cell; vertical-align: middle;}
-
-.circle{
-  margin: auto;
-  border: solid 10px #6FC7B5;
-  border-radius: 50%;
-  width: 300px;
-  height: 300px;
+.main{
+  display: flex;
+  justify-content: center;
 }
 
 #usericon {
@@ -84,7 +88,6 @@ li{
 #logo{
   color: #6FC7B5;
   font-weight: bold; 
-  font-size: 1.2em;
 }
 
 #daynav{

@@ -1,3 +1,11 @@
+<?php session_start();
+
+$userid = $_SESSION['id'];
+
+$dsn = "mysql:host=localhost;dbname=lantc_dog;charset=utf8mb4";
+$dbusername = "lantc";
+$dbpassword = "NkXHus3h!6V";
+?>
 
 <html>
     <head>

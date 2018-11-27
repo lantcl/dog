@@ -22,11 +22,10 @@ $last = $lastwalk["most_recent_walk"];
 $lastTime = date("H:m");
 
 ?>
-
 <!doctype html>
 <html>
     <head>
-        <title>Walky-Talky</title>
+        <title>Walk History</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
@@ -36,7 +35,7 @@ $lastTime = date("H:m");
             <h1><a id="logo" href = "main.php">Walky Talky</a></h1>
             <h1>Last Walk <?php echo($lastTime);?></h1>
             <?php if($_SESSION['logged-in'] == true){?>
-            <a href = "profile.php"><img id="usericon" src="assets/<?php echo($user["profilepic"]);?>" alt="profile icon"></a>
+            <a href = "user-profile.php"><img id="usericon" src="assets/<?php echo($user["profilepic"]);?>" alt="profile icon"></a>
         <?php } else {?>
             <h1><a href = "login.php">Log In</a></h1>
         <?php } ?>
@@ -59,11 +58,14 @@ $lastTime = date("H:m");
         
         <section>
             <div id="daynav">
-            <img id="goback" class= "arrowbutton" src="assets/backbutton.svg" alt="backbutton">
             <h2 id="today"></h2>
-            <img id="goforward" class= "arrowbutton" src="assets/forwardbutton.svg" alt="forwardbutton">
-            </div>
-            <div class ="main">
+            </div>        
+            <div class="main">
+                <h1>My Profile</h1>
+                <h2>Name</h2>
+                <h2>Change your user icon</h2>
+                <h2>Phone number</h2>
+                <h2>Email</h2>
             </div>
         </section>
         <footer>
