@@ -2,32 +2,24 @@
 
 session_start();
 
-if($_SESSION['roleid'] == 1 || 2){
+if($_SESSION['logged-in'] = true){
 
-$walkday = $_POST['walkday'];
-$walktime = $_POST['walktime'];
-$walklength = $_POST['walklength'];
-$articlesummary = $_POST['articlesummary'];
-$industry = $_POST['articlecat-industry'];
-$career = $_POST['articlecat-career'];
-$technical = $_POST['articlecat-technical'];
-$articledate = $_POST['articledate'];
-$filename = $_FILES['articleimage']['name'];
+$userid = $_SESSION['id'];
+$dogid = $_POST['dogid'];
+$lengthid = $_POST['lengthid'];
+$time = $_POST['time'];
+$date = $_POST['date'];
+$pee = $_POST['pee'];
+$poo = $_POST['poo'];
+$statusid = $_POST['statusid'];
 
-if (move_uploaded_file($_FILES['articleimage']['tmp_name'], $uploadfile)) {
-    	//header("Location: add-article-confirm.php");
-	} else {
-    	echo "Please select an image to upload\n";
-	}
-
-
-$dsn = "mysql:host=localhost; dbname=lantc_imm_news_network; charset=utf8mb4";
-$dbusername = "lantc_imm";
-$dbpassword = "thisisapassword!";
+$dsn = "mysql:host=localhost;dbname=lantc_dog;charset=utf8mb4";
+$dbusername = "lantc";
+$dbpassword = "NkXHus3h!6V";
 
 $pdo = new PDO($dsn, $dbusername, $dbpassword); 
 
-$stmt = $pdo->prepare("INSERT INTO `walkhistory` (`walkid`, `walkday`, `walktime`, `walklength`, `articleimage`, `articlecat-industry`, `articlecat-technical`, `articlecat-career`, `articledate`, `articlesummary`) VALUES (NULL, '$walkday', '$walktime', '$walklength', '$filename', '$industry', '$technical', '$career', '$articledate', '$articlesummary');");
+$stmt = $pdo->prepare("INSERT INTO `walks` (`id`, `dogid`, `userid`, `lengthid`, `time`, `date`, `pee`, `poo`, `statusid`) VALUES (NULL, '$dogid', '$userid', '$lengthid', '$time', '$date', '$pee', '$poo', '$statusid');");
 
 $stmt->execute();
 

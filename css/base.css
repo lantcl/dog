@@ -98,6 +98,7 @@ li{
 
 .arrowbutton{
   width:30px;
+  cursor: pointer;
 }
 
 /*  Menu */
@@ -122,15 +123,64 @@ li{
     display: block;
 }
 
-/* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #6FC7B5}
 
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: flex;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+}
+
+
+/* timeline */
+
+/* The actual timeline (the vertical ruler) */
+.chart{
+  position: relative;
+  top: 100px;
+}
+
+.form{
+  display: flex;
+  justify-content: center;
+  top: 100px;
+}
+
+.input{
+
+}
+
+.timeline {
+  z-index: 1;
+  left: 0px;
+  top: 0px;
+  height: 3px;
+  width: 600px;
+  background-color: #0B5F64;
+}
+
+.icon{
+  transform-origin: top left;
+  position: absolute;
+  top: -20px;
+  left: 10%;
+  z-index: 2;
+  width: 40px;
+  cursor: pointer;
+}
+
+#poopaw{
+  transform-origin: top left;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  z-index: 2;
+  width: 40px;
+  cursor: pointer;
+}
+
+#add{
+  left: 80%;
 }

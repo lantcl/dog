@@ -9,7 +9,7 @@ function startTime() {
     m = checkTime(m);
     tt = "AM";
 	if (h > 12){
-	h = h-12
+	h = h-12;
     tt = "PM";
     }
     document.getElementById('datetime').innerHTML = h + ":" + m + " " + tt;
@@ -30,29 +30,32 @@ var monthNames = ["January", "February", "March", "April", "May", "June",
 var todaydate = new Date();
 var d = todaydate.getDate();
 var mo = monthNames[todaydate.getMonth()];
-document.getElementById("today").innerHTML = mo + " " + d;
+var todayy = document.getElementById("today")
+todayy.innerHTML = mo + " " + d;
 
 //Clock Buttons
 
 
 var forward = document.getElementById("goforward");
-forward.style.cursor= "pointer";
 forward.addEventListener("click", forwardfunction, false);
 function forwardfunction(){
-    console.log("clicked");
+    var d = todaydate.getDate() + 1;
+    //d = todaydate.setTime(todaydate.getTime() + (24 * 60 * 60 * 1000));
+    // d = new Date((new Date()).valueOf() + 1000*3600*24).getDate();
+    todayy.innerHTML = mo + " " + d; 
 }
 
 var back = document.getElementById("goback");
-back.style.cursor= "pointer";
 back.addEventListener("click", backfunction, false);
 function backfunction(){
-    console.log("clicked");        
+    var d = todaydate.getDate() - 1;
+    todayy.innerHTML = mo + " " + d;        
 }
 
 //Add Walk
 
-var newWalk = document.getElementById("newalk");
-newalk.addEventListener("click", walkfunction, false);
+var newWalk = document.getElementById("add");
+neWalk.addEventListener("click", walkfunction, false);
 
 function walkfunction(){
     display: block;

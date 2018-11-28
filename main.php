@@ -19,7 +19,7 @@ $stmt->execute();
 $lastwalk = $stmt->fetch();
 
 $last = $lastwalk["most_recent_walk"];
-$lastTime = date("H:m");
+// $lastTime = date_format($last, 'H: i');
 
 ?>
 
@@ -34,7 +34,7 @@ $lastTime = date("H:m");
     <body onload="startTime()">
         <header>       
             <h1><a id="logo" href = "main.php">Walky Talky</a></h1>
-            <h1>Last Walk <?php echo($lastTime);?></h1>
+            <h1>Last Walk <?php echo($last);?></h1>
             <?php if($_SESSION['logged-in'] == true){?>
             <a href = "profile.php"><img id="usericon" src="assets/<?php echo($user["profilepic"]);?>" alt="profile icon"></a>
         <?php } else {?>
@@ -63,7 +63,13 @@ $lastTime = date("H:m");
             <h2 id="today"></h2>
             <img id="goforward" class= "arrowbutton" src="assets/forwardbutton.svg" alt="forwardbutton">
             </div>
-            <div class ="main">
+        </section>
+        <section class="main">
+            <div class ="chart">
+                <div class="timeline"></div>
+                <img class= "icon" src="assets/paw.svg" alt="paw icon">
+                <img class= "icon" id="add" src="assets/clockadd.svg" alt="paw icon">
+                <img id= "poopaw" src="assets/poopaw.svg" alt="paw icon">
             </div>
         </section>
         <footer>
