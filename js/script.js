@@ -57,3 +57,12 @@ newWalk.addEventListener("click", walkfunction, false);
 function walkfunction(){
     display: block;
 }
+
+//minutes seconds in the day
+
+// var maxTime = ;
+// var walkTime = ;
+
+// w = Math.round(maxTime / walkTime )*10; //should give percent value
+
+//icon width = w +'%';
