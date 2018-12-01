@@ -8,22 +8,19 @@ function startTime() {
     var m = today.getMinutes();
     m = checkTime(m);
     tt = "AM";
-	if (h > 12){
-	h = h-12;
-    tt = "PM";
-    }
+	if (h > 12){h = h-12;tt = "PM";} // probably a better way to do this but this is what I came up with 
     document.getElementById('datetime').innerHTML = h + ":" + m + " " + tt;
-    var t = setTimeout(startTime, 20000);
+    var t = setTimeout(startTime, 20000); // could check more frequently but this is ok
 }
 
 function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10 got this from W3 schools
     return i;
 }
 
 //Date Display 
 
-var monthNames = ["January", "February", "March", "April", "May", "June",
+var monthNames = ["January", "February", "March", "April", "May", "June",  //W3 schools
   "July", "August", "September", "October", "November", "December"
 ];
 
@@ -55,7 +52,7 @@ function backfunction(){
 //Add Walk
 
 var newWalk = document.getElementById("add");
-neWalk.addEventListener("click", walkfunction, false);
+newWalk.addEventListener("click", walkfunction, false);
 
 function walkfunction(){
     display: block;

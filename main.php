@@ -13,13 +13,16 @@ $row = $pdo->prepare("SELECT * FROM `users` WHERE id = $userid");
 $row->execute();
 $user = $row->fetch();
 
-$stmt = $pdo->prepare("SELECT `id`, MAX(`time`) AS most_recent_walk FROM `walks` GROUP BY id");
-$stmt->execute();
+$stmt = $pdo->prepare("SELECT * FROM `walks` WHERE `id` IN (SELECT MAX(`id`) FROM `walks`)");
 
+$stmt->execute();
 $lastwalk = $stmt->fetch();
 
-$last = $lastwalk["most_recent_walk"];
-// $lastTime = date_format($last, 'H: i');
+$date = new DateTime($lastwalk["time"]);
+$tt = "AM";
+if ($date > '12:00:00'){$tt = "PM";} 
+
+$last = $date->format('H:i');
 
 ?>
 
@@ -34,7 +37,7 @@ $last = $lastwalk["most_recent_walk"];
     <body onload="startTime()">
         <header>       
             <h1><a id="logo" href = "main.php">Walky Talky</a></h1>
-            <h1>Last Walk <?php echo($last);?></h1>
+            <h1>Last Walk <?php echo($last . ' ' . $tt);?></h1>
             <?php if($_SESSION['logged-in'] == true){?>
             <a href = "profile.php"><img id="usericon" src="assets/<?php echo($user["profilepic"]);?>" alt="profile icon"></a>
         <?php } else {?>
@@ -47,9 +50,9 @@ $last = $lastwalk["most_recent_walk"];
                 <img id="menubutton" class= "arrowbutton" src="assets/menubutton.svg" alt="menuicon">
                 <nav class="dropdown-content">
                     <ul>
-                    <li><a href = "main.html">Home</a></li>
-                    <li><a href = "walk-history.html">Walk History</a></li>
-                    <li><a id = "newwalk" href = "#">Add Walk</a></li>
+                    <li><a href = "main.php">Home</a></li>
+                    <li><a id = "newWalk" href = "add-walk.php">Add Walk</a></li>
+                    <li><a id = "notice" href = "notice.php">Update Notice</a></li>
                     </ul>
                 </nav>          
             </section>            
