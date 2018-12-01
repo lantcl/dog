@@ -67,8 +67,8 @@ $last = $date->format('H:i');
             <section class="form">        
      		<form action="add-walk-process.php" method="POST"><br>
      			<input type = "hidden" name="dogid" value="1"/><br>
-     			<input type = "datetime" autocomplete="on" name="time"><br> 
-				
+     			<input type = "date" autocomplete="on" name="date" required><br> 
+				<input type = "time" autocomplete="on" name="time" required><br> 
 				Walk Length:<select name="lengthid">
                         <option value="1">quick pee - 5 minutes</option>
                         <option value="2">around the block - 10 minutes</option>
@@ -78,7 +78,7 @@ $last = $date->format('H:i');
                     </select><br>
 
 				Pee <input type="checkbox" name="pee" value="1" />
-				Poop <input type="checkbox" name="poop" value="1" />
+				Poop <input type="checkbox" name="poo" value="1" />
 				
 				Notes:<textarea name="notes"></textarea><br>
 				<input type = "submit"/><br>
