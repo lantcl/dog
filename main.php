@@ -72,9 +72,9 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
             <img id="goforward" class= "arrowbutton" src="assets/forwardbutton.svg" alt="forwardbutton">
             </div>
         </section>
-        <section class="main">
-            <div class ="chart">
-                <div class="timeline"></div>
+        <section id="main">
+            <div id ="chart">
+                <div id="timeline"></div>
 <!--                 <img class= "icon" src="assets/paw.svg" alt="paw icon"> -->
                 <img class= "icon" id="add" src="assets/clockadd.svg" alt="paw icon">
 <!--                 <img id= "poopaw" src="assets/poopaw.svg" alt="paw icon"> -->

@@ -49,21 +49,21 @@ function backfunction(){
     todayy.innerHTML = mo + " " + d;        
 }
 
+
 //Add Walk
 
 window.onload = function(){
 
 function walkfunction(){
-    
-    var paw; 
 
     //add walk icon position
     var newWalk = document.getElementById("add");
-    var chart = document.getElementsByClassName("chart");    
+    var chart = document.getElementById("chart");    
     var maxTime = 24;
     var today = new Date();
     var h = today.getHours();
-        
+    
+
     var time = parseInt(h / maxTime *100);
 
     newWalk.style.marginLeft = time+"%";
@@ -82,18 +82,26 @@ function walkfunction(){
         function walkHistory(response) {
             
             var walkData = JSON.parse(response);
-            for(var i = 0; i < walkData.length; i++) {
-                paw[i] = document.createElement("img").className = "icon";
-                paw[i].src = "../assets/paw.svg"; 
+            for(var i = 0; i < walkData.length; i++) { 
+                
+                chart = document.getElementById("chart");
+                var paw = document.createElement('img');
+                
+                paw.setAttribute("class", "icon");
+                                    
+                    if(walkData[i].poo == "1"){
+                        paw.setAttribute("src", "assets/poopaw.svg")
+                    } else {
+                        paw.setAttribute("src", "assets/paw.svg");
+                    }
+
                 var time = walkData[i].walktime;
-                
                 var newTime = time.substring(0, 2);
-                
                 var Wtime = parseInt(newTime / maxTime *100);
             
-                //console.log(Wtime);
-                // paw.style.marginLeft = Wtime+"%";
-                paw[i].style.marginLeft = Wtime+"%";
+                console.log(Wtime);
+                //paw.setAttribute("marginLeft", "10%");
+                paw.style.marginLeft = Wtime+"%";
                 chart.appendChild(paw);
             }
         }
@@ -120,4 +128,3 @@ walkfunction();
 
 //     chart.appendChild(paw);
 // }
-
