@@ -51,56 +51,51 @@ function backfunction(){
 
 //Add Walk
 
-var newWalk = document.getElementById("add");
-newWalk.addEventListener("click", walkfunction, false);
-
-
-//walk chart 
-
-// d 
+window.onload = function(){
 
 function walkfunction(){
+    
+    var paw; 
 
+    //add walk icon position
+    var newWalk = document.getElementById("add");
     var chart = document.getElementsByClassName("chart");    
     var maxTime = 24;
-    // console.log("clicked");
-
-        var today = new Date();
-        var h = today.getHours();
+    var today = new Date();
+    var h = today.getHours();
         
-        var time = parseInt(h / maxTime *100);
+    var time = parseInt(h / maxTime *100);
 
-        newWalk.style.marginLeft = time+"%";
+    newWalk.style.marginLeft = time+"%";
 
+    //added waklks icon positions 
+    var myRequest = new XMLHttpRequest();
 
-        // var myRequest = new XMLHttpRequest();
+        myRequest.onreadystatechange = function() {
+            if (myRequest.readyState == 4) {
+                walkHistory(myRequest.responseText);
+            }
+        }
+        myRequest.open("GET", "walks.php", true);
+        myRequest.send();
 
-        // myRequest.onreadystatechange = function() {
-        //     if (myRequest.readyState == 4) {
-        //         walkHistory(myRequest.responseText);
-        //     }
-        // }
-        // myRequest.open("GET", "walks.php", true);
-        // myRequest.send();
-
-        // function walkHistory(response) {
+        function walkHistory(response) {
             
-        //     var walkData = JSON.parse(response);
+            var walkData = JSON.parse(response);
             
-        //     for(var i = 0; i < walkData.length; i++) {
-        //         var paw = document.createElement("img").class = "icon";
-        //         paw.src = "../assets/paw.svg";
-        //         var time = walkData[i].walktime;
-        //         console.log(time);
-        //         paw.style.width = "time + %"; 
+            for(var i = 0; i < walkData.length; i++) {
+                paw = document.createElement("img").class = "icon";
+                paw.src = "../assets/paw.svg"; 
+                var time = walkData[i].walktime;
+                paw.style.marginLeft = time+"%";
+                console.log(time);
+                chart.appendChild(paw);
+            }
+        }
 
-        //         chart.appendChild(paw);
-        //     }
-        // }
 }
-
-
-
+walkfunction();
+}
 //minutes seconds in the day
 
 
