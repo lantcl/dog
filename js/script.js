@@ -56,7 +56,7 @@ window.onload = function(){
 
 function walkfunction(){
 
-    //add walk icon position
+    //display add walk icon based on current time 
     var newWalk = document.getElementById("add");
     var chart = document.getElementById("chart");    
     var maxTime = 24;
@@ -67,8 +67,9 @@ function walkfunction(){
     var time = parseInt(h / maxTime *100);
 
     newWalk.style.marginLeft = time+"%";
+    
+    //get the walk data for today from the database 
 
-    //added waklks icon positions 
     var myRequest = new XMLHttpRequest();
 
         myRequest.onreadystatechange = function() {
@@ -85,10 +86,15 @@ function walkfunction(){
             for(var i = 0; i < walkData.length; i++) { 
                 
                 chart = document.getElementById("chart");
+                var aTag = document.createElement('a');
                 var paw = document.createElement('img');
                 
+                aTag.setAttribute("href", "walk-record.php?id="+walkData[i].id);
                 paw.setAttribute("class", "icon");
-                                    
+                
+                //display a blue icon for walks
+                //display a brown icon for walks where the dog pooped hehe
+
                     if(walkData[i].poo == "1"){
                         paw.setAttribute("src", "assets/poopaw.svg")
                     } else {
@@ -100,9 +106,9 @@ function walkfunction(){
                 var Wtime = parseInt(newTime / maxTime *100);
             
                 console.log(Wtime);
-                //paw.setAttribute("marginLeft", "10%");
                 paw.style.marginLeft = Wtime+"%";
-                chart.appendChild(paw);
+                aTag.appendChild(paw);
+                chart.appendChild(aTag);
             }
         }
 

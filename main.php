@@ -9,7 +9,7 @@ $dbpassword = "NkXHus3h!6V";
 
 $pdo = new PDO($dsn, $dbusername, $dbpassword);
 
-$row = $pdo->prepare("SELECT * FROM `users` WHERE id = $userid");
+$row = $pdo->prepare("SELECT * FROM `users` WHERE `id` = $userid");
 $row->execute();
 $user = $row->fetch();
 
@@ -75,9 +75,7 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
         <section id="main">
             <div id ="chart">
                 <div id="timeline"></div>
-<!--                 <img class= "icon" src="assets/paw.svg" alt="paw icon"> -->
-                <img class= "icon" id="add" src="assets/clockadd.svg" alt="paw icon">
-<!--                 <img id= "poopaw" src="assets/poopaw.svg" alt="paw icon"> -->
+                <a href="add-walk.php"><img class= "icon" id="add" src="assets/clockadd.svg" alt="paw icon"></a>
             </div>
         </section>
         <footer>

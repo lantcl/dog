@@ -1,6 +1,9 @@
-<?php session_start();
+<?php
+
+session_start();
 
 $userid = $_SESSION['id'];
+$id = $_GET['id'];
 
 $dsn = "mysql:host=localhost;dbname=lantc_dog;charset=utf8mb4";
 $dbusername = "lantc";
@@ -21,17 +24,17 @@ $last = $lastwalk["walktime"];
 $tt = "AM";
 if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
 
-// $date = new DateTime($lastwalk["time"]);
-// $tt = "AM";
-// if ($date > '12:00:00'){$tt = "PM";} 
+$walk = $pdo->prepare("SELECT * FROM `walks` WHERE `id` = $id");
+$walk->execute();
 
-// $last = $date->format('H:i');
-//the above worked with the phpmyadmin datetime data type, but couldn't submit it in that exact format with html so had to make date and time columns 
+// SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`lengthid`, `walks`.`walktime`, `walks`.`date`, `walks`.`userid` FROM `walks` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = 8
+
 ?>
 
+<!doctype html>
 <html>
     <head>
-        <title>Add Walk</title>
+        <title>Walk History</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
@@ -46,7 +49,6 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
             <h1><a href = "login.php">Log In</a></h1>
         <?php } ?>
         </header>
-
         <section id="subhead">         
             <section class="dropdown">
                 <img id="menubutton" class= "arrowbutton" src="assets/menubutton.svg" alt="menuicon">
@@ -61,38 +63,23 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
             <h2>Notice Goes here</h2>
             <h2><span id="datetime"></span></h2>
         </section>
-        <section>
-            <div id="daynav">
-            <h2 id="today"></h2>
-            </div>
+        <section id="main">         
+            <?php
+            while($row = $walk->fetch()) {     
+                ?>
+                    <div>
+                    <p>Day: <?php echo($row["date"]);?></p>
+                    <p>time: <?php echo($row["walktime"]);?></p>
+                    <p>Walked by: <?php echo($row["userid"]);?></p>
+                    <p>length: <?php echo($row["walklength"]);?></p>
+                    <p>Pee: <?php echo($row["pee"]);?></p>
+                    <p>poo: <?php echo($row["poo"]);?></p>
+                    <p>notes: <?php echo($row["notes"]);?></p>
+                </div>
+            <?php }
+            ?>
         </section>
 
-        <section id="main"> 
-            <section class="form">  
-            <h2>Add a Walk Record</h2>      
-     		<form action="add-walk-process.php" method="POST"><br>
-     			<input type = "hidden" name="dogid" value="1"/><br>
-                <input type = "date" name="date" autocomplete="on" required><br> 
-<!-- 				<input type = "time" autocomplete="on" name="time" required><br>  -->
-                <input type = "time" autocomplete="on" name="walktime" required><br>
-				Walk Length:<select name="lengthid">
-                        <option value="1">quick pee - 5 minutes</option>
-                        <option value="2">around the block - 10 minutes</option>
-                        <option value="3">normal walk - 15-20 minutes</option>
-                        <option value="4">long walk - 25-40 minutes</option>
-                        <option value="5">gold star walk - 25-40 minutes</option>
-                    </select><br>
-
-				Pee <input type="checkbox" name="pee" value="1" />
-				Poop <input type="checkbox" name="poo" value="1" />
-				
-				Notes:<textarea name="notes"></textarea><br>
-				<input type = "submit"/><br>
-     		</form>
-            </section>
-        </section>
-
-        </section>
         <footer>
             <nav>
                 <ul id="footernav">
@@ -105,4 +92,3 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
         <script src="js/script.js"></script>
     </body>
 </html>
-

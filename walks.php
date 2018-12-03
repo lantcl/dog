@@ -16,7 +16,7 @@ while($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
     if ($data != "[") {$data .= ",";}
     $data .= '{"walktime":"'  . $rs["walktime"] . '",';  ///w3 schools
     $data .= '"poo":"'   . $rs["poo"]   . '",';
-    $data .= '"lengthid":"'. $rs["lengthid"]     . '"}'; 
+    $data .= '"id":"'. $rs["id"]     . '"}'; 
 }
 $data .="]";
 
