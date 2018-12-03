@@ -21,7 +21,7 @@ while($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
 $data .="]";
 
 
-// echo($data);
+echo($data);
 
 // $date = new DateTime($lastwalk["time"]);
 // $tt = "AM";

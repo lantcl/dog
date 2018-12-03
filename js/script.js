@@ -82,13 +82,18 @@ function walkfunction(){
         function walkHistory(response) {
             
             var walkData = JSON.parse(response);
-            
             for(var i = 0; i < walkData.length; i++) {
-                paw = document.createElement("img").class = "icon";
-                paw.src = "../assets/paw.svg"; 
+                paw[i] = document.createElement("img").className = "icon";
+                paw[i].src = "../assets/paw.svg"; 
                 var time = walkData[i].walktime;
-                paw.style.marginLeft = time+"%";
-                console.log(time);
+                
+                var newTime = time.substring(0, 2);
+                
+                var Wtime = parseInt(newTime / maxTime *100);
+            
+                //console.log(Wtime);
+                // paw.style.marginLeft = Wtime+"%";
+                paw[i].style.marginLeft = Wtime+"%";
                 chart.appendChild(paw);
             }
         }
