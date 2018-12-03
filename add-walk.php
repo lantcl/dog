@@ -17,12 +17,16 @@ $stmt = $pdo->prepare("SELECT * FROM `walks` WHERE `id` IN (SELECT MAX(`id`) FRO
 $stmt->execute();
 $lastwalk = $stmt->fetch();
 
-$date = new DateTime($lastwalk["time"]);
+$last = $lastwalk["walktime"];
 $tt = "AM";
-if ($date > '12:00:00'){$tt = "PM";} 
+if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
 
-$last = $date->format('H:i');
+// $date = new DateTime($lastwalk["time"]);
+// $tt = "AM";
+// if ($date > '12:00:00'){$tt = "PM";} 
 
+// $last = $date->format('H:i');
+//the above worked with the phpmyadmin datetime data type, but couldn't submit it in that exact format with html so had to make date and time columns 
 ?>
 
 <html>
@@ -67,8 +71,9 @@ $last = $date->format('H:i');
             <section class="form">        
      		<form action="add-walk-process.php" method="POST"><br>
      			<input type = "hidden" name="dogid" value="1"/><br>
-     			<input type = "date" autocomplete="on" name="date" required><br> 
-				<input type = "time" autocomplete="on" name="time" required><br> 
+                <input type = "date" name="date" autocomplete="on" required><br> 
+<!-- 				<input type = "time" autocomplete="on" name="time" required><br>  -->
+                <input type = "time" autocomplete="on" name="walktime" required><br>
 				Walk Length:<select name="lengthid">
                         <option value="1">quick pee - 5 minutes</option>
                         <option value="2">around the block - 10 minutes</option>

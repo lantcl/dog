@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 session_start();
 
 $userid = $_SESSION['id'];
@@ -7,13 +8,28 @@ $dsn = "mysql:host=localhost;dbname=lantc_dog;charset=utf8mb4";
 $dbusername = "lantc";
 $dbpassword = "NkXHus3h!6V";
 
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+$pdo = new PDO($dsn, $dbusername, $dbpassword);
 
-$stmt = $pdo->prepare("SELECT * FROM `walks`");
+$row = $pdo->prepare("SELECT * FROM `users` WHERE id = $userid");
+$row->execute();
+$user = $row->fetch();
+
+$stmt = $pdo->prepare("SELECT * FROM `walks` WHERE `id` IN (SELECT MAX(`id`) FROM `walks`)");
 
 $stmt->execute();
-?>
+$lastwalk = $stmt->fetch();
 
+$last = $lastwalk["walktime"];
+$tt = "AM";
+if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
+
+// $date = new DateTime($lastwalk["time"]);
+// $tt = "AM";
+// if ($date > '12:00:00'){$tt = "PM";} 
+
+// $last = $date->format('H:i');
+//the above worked with the phpmyadmin datetime data type, but couldn't submit it in that exact format with html so had to make date and time columns 
+?>
 <!doctype html>
 <html>
     <head>

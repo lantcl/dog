@@ -54,15 +54,70 @@ function backfunction(){
 var newWalk = document.getElementById("add");
 newWalk.addEventListener("click", walkfunction, false);
 
+
+//walk chart 
+
+// d 
+
 function walkfunction(){
-    display: block;
+
+    var chart = document.getElementsByClassName("chart");    
+    var maxTime = 24;
+    // console.log("clicked");
+
+        var today = new Date();
+        var h = today.getHours();
+        
+        var time = parseInt(h / maxTime *100);
+
+        newWalk.style.marginLeft = time+"%";
+
+
+        // var myRequest = new XMLHttpRequest();
+
+        // myRequest.onreadystatechange = function() {
+        //     if (myRequest.readyState == 4) {
+        //         walkHistory(myRequest.responseText);
+        //     }
+        // }
+        // myRequest.open("GET", "walks.php", true);
+        // myRequest.send();
+
+        // function walkHistory(response) {
+            
+        //     var walkData = JSON.parse(response);
+            
+        //     for(var i = 0; i < walkData.length; i++) {
+        //         var paw = document.createElement("img").class = "icon";
+        //         paw.src = "../assets/paw.svg";
+        //         var time = walkData[i].walktime;
+        //         console.log(time);
+        //         paw.style.width = "time + %"; 
+
+        //         chart.appendChild(paw);
+        //     }
+        // }
 }
+
+
 
 //minutes seconds in the day
 
-// var maxTime = ;
+
 // var walkTime = ;
 
 // w = Math.round(maxTime / walkTime )*10; //should give percent value
-
+//Percentage = (number * 100 / total);
 //icon width = w +'%';
+
+
+// for (var i=0; i<walkData; i++){
+//     // var a = document.createElement("a");
+//     var paw = document.createElement("img").id = "icon";
+//     paw.src = "../assets/paw.svg";
+//     var place = walkData[i].walktime;
+//     paw.style.width = "place + %"; 
+
+//     chart.appendChild(paw);
+// }
+
