@@ -8,6 +8,7 @@ $pdo = new PDO($dsn, $dbusername, $dbpassword);
 
 $date = date("Y-m-d");
 
+
 $stmt = $pdo->prepare("SELECT * FROM `walks` WHERE `date` = '$date'");
 $stmt->execute();
 

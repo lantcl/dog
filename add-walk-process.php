@@ -2,7 +2,7 @@
 
 session_start();
 
-// if($_SESSION['logged-in'] = true){
+if($_SESSION['logged-in'] == true){
 
 $userid = $_SESSION['id'];
 $dogid = $_POST['dogid'];
@@ -26,9 +26,9 @@ $stmt = $pdo->prepare("INSERT INTO `walks` (`id`, `dogid`, `userid`, `lengthid`,
 
 $stmt->execute();
 
-// header("Location: main.php");
+header("Location: main.php");
 
-// }else{
-// 	echo('walk was not added');
-// }
-// ?>
+}else{
+echo('walk was not added');
+}
+?>

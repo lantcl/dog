@@ -1,5 +1,6 @@
 <?php session_start();
 
+
 $userid = $_SESSION['id'];
 
 $dsn = "mysql:host=localhost;dbname=lantc_dog;charset=utf8mb4";
@@ -36,11 +37,12 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
     </head>
-    <body onload="startTime()">
+    <body>
         <header>       
             <h1><a id="logo" href = "main.php">Walky Talky</a></h1>
             <h1>Last Walk <?php echo($last . ' ' . $tt);?></h1>
             <?php if($_SESSION['logged-in'] == true){?>
+            <a href = "logout.php"><h2>Log Out</h2></a>
             <a href = "profile.php"><img id="usericon" src="assets/<?php echo($user["profilepic"]);?>" alt="profile icon"></a>
         <?php } else {?>
             <h1><a href = "login.php">Log In</a></h1>
@@ -54,11 +56,13 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
                     <ul>
                     <li><a href = "main.php">Home</a></li>
                     <li><a id = "newWalk" href = "add-walk.php">Add Walk</a></li>
-                    <li><a id = "notice" href = "notice.php">Update Notice</a></li>
+                    <li><a id = "notice" href = "status.php">Update Dog Status</a></li>
                     </ul>
                 </nav>          
-            </section>            
-            <h2>Notice Goes here</h2>
+            </section>
+            <?php if($_SESSION['logged-in'] == true){ ?>            
+            <h2><?php echo($user["name"].' '.$currentstatus["status"]);?></h2>
+        <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
         <section>
@@ -66,8 +70,8 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
             <h2 id="today"></h2>
             </div>
         </section>
-
         <section id="main"> 
+<?php if($_SESSION['logged-in'] == true){ ?>
             <section class="form">  
             <h2>Add a Walk Record</h2>      
      		<form action="add-walk-process.php" method="POST"><br>
@@ -86,13 +90,16 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
 				Pee <input type="checkbox" name="pee" value="1" />
 				Poop <input type="checkbox" name="poo" value="1" />
 				
-				Notes:<textarea name="notes"></textarea><br>
+				Notes:<textarea name="notes"></textarea>
 				<input type = "submit"/><br>
      		</form>
             </section>
+        <?php } else { ?>
+            <h1>You must be logged in to add a walk record</h1>
+            <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" style="width: 50px"></a>
+        <?php } ?>
         </section>
 
-        </section>
         <footer>
             <nav>
                 <ul id="footernav">

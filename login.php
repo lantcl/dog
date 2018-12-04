@@ -37,7 +37,7 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
     </head>
-    <body onload="startTime()">
+    <body>
         <header>       
             <h1><a id="logo" href = "main.php">Walky Talky</a></h1>
             <h1>Last Walk <?php echo($lastTime);?></h1>
