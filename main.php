@@ -82,7 +82,17 @@ $currentstatus = $stat->fetch();
         <section id="main">
             <div id ="chart">
                 <div id="timeline"></div>
+                <div id="timenumbers">
+                    <p>1 AM</p>
+                    <p>6 AM</p>
+                    <p>12 PM</p>
+                    <p>6 PM</p>
+                    <p>12 AM</p>
+                </div>
+                <div id = "popbox">
                 <a href="add-walk.php"><img class= "icon" id="add" src="assets/clockadd.svg" alt="paw icon"></a>
+                <span class="hovertext">Add Walk</span>
+                </div>
             </div>
         </section>
         <footer>

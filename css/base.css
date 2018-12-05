@@ -2,22 +2,22 @@
 
 body { 
   background-color: #FFFBF3;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #6FC7B5;
   }  
 
 h1{
   color: #D09171;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: normal;
-  letter-spacing: 2px;
   font-size: 2em;
+  font-weight: normal;
 }
 
 h2{
   color: #6FC7B5;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: normal;
-  letter-spacing: 2px;
   font-size: 1.5em;
+  font-weight: normal;
 }
 
 header {
@@ -161,6 +161,14 @@ li{
   background-color: #0B5F64;
 }
 
+#timenumbers {
+  display: flex;
+  justify-content: space-between;
+  left: -10px;
+  width: 600px;
+  margin-top: 10px;
+}
+
 .icon{
   position: absolute;
   top: -20px;
@@ -182,4 +190,40 @@ li{
 
 #add{
   left: -15px;
+}
+
+#popbox .hovertext {
+  visibility: hidden;
+  color: #6FC7B5;
+  background-color: #0B5F64;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 3;
+  width: 80px;
+  top: -75px;
+  margin-left: -45px;
+}
+
+#popbox:hover .hovertext {
+  visibility: visible;
+}
+
+#pawbox .hoverpaw {
+  visibility: hidden;
+  color: #6FC7B5;
+  background-color: #0B5F64;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 3;
+  width: 80px;
+  top: -75px;
+  margin-left: -45px;
+}
+
+#pawbox:hover .hoverpaw {
+  visibility: visible;
 }

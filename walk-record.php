@@ -68,13 +68,13 @@ $walk->execute();
             while($row = $walk->fetch()) {     
                 ?>
                     <div>
-                    <p>Day: <?php echo($row["date"]);?></p>
-                    <p>time: <?php echo($row["walktime"]);?></p>
-                    <p>Walked by: <?php echo($row["userid"]);?></p>
-                    <p>length: <?php echo($row["walklength"]);?></p>
-                    <p>Pee: <?php echo($row["pee"]);?></p>
-                    <p>poo: <?php echo($row["poo"]);?></p>
-                    <p>notes: <?php echo($row["notes"]);?></p>
+                    <h2>Day: <?php echo($row["date"]);?></h2>
+                    <h2>time: <?php echo($row["walktime"]);?></h2>
+                    <h2>Walked by: <?php echo($row["userid"]);?></h2>
+                    <h2>length: <?php echo($row["walklength"]);?></h2>
+                    <h2>Pee: <?php echo($row["pee"]);?></h2>
+                    <h2>poo: <?php echo($row["poo"]);?></h2>
+                    <h2>notes: <?php echo($row["notes"]);?></h2>
                 </div>
             <?php }
             ?>

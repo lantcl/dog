@@ -1,7 +1,9 @@
 console.log("connected");
 
 //Time Display
-
+var newWalk = document.getElementById("add");
+var popbox = document.getElementById("popbox");
+var chart = document.getElementById("chart");
 
 (function startTime() {
     var today = new Date();
@@ -40,27 +42,123 @@ function forwardfunction(){
     //curDate = new Date(curDate.parse() + 86400);
     curDate = new Date(Date.parse(curDate) + 86400000);
 
-    //d = todaydate.setTime(todaydate.getTime() + (24 * 60 * 60 * 1000));
-    // d = new Date((new Date()).valueOf() + 1000*3600*24).getDate();
     d = curDate.getDate();
     mo = monthNames[curDate.getMonth()];
 
     todayy.innerHTML = mo + " " + d;
     //curDate = d;
+    var tomorrowRecord = new XMLHttpRequest();
+
+        tomorrowRecord.onreadystatechange = function() {
+            if (tomorrowRecord.readyState == 4) {
+                walkHistory(tomorrowRecord.responseText);
+            }
+        }
+        tomorrowRecord.open("GET", "walks-plus.php", true);
+        tomorrowRecord.send();
+
+        function walkHistory(response) {
+            
+            var walkData = JSON.parse(response);
+            for(var i = 0; i < walkData.length; i++) { 
+                
+                chart = document.getElementById("chart");
+                var aTag = document.createElement('a');
+                var paw = document.createElement('img');
+                
+                aTag.setAttribute("href", "walk-record.php?id="+walkData[i].id);
+                paw.setAttribute("class", "icon");
+                
+                //display a blue icon for walks
+                //display a brown icon for walks where the dog pooped hehe
+
+                    if(walkData[i].poo == "1"){
+                        paw.setAttribute("src", "assets/poopaw.svg")
+                    } else {
+                        paw.setAttribute("src", "assets/paw.svg");
+                    }
+
+                var time = walkData[i].walktime;
+                var newTime = time.substring(0, 2);
+                var Wtime = parseInt(newTime / maxTime *100);
+            
+                //console.log(Wtime);
+                paw.style.marginLeft = Wtime+"%";
+                aTag.appendChild(paw);
+
+                chart.appendChild(aTag);
+            }
+        }
+
+
+
 }
 
 var back = document.getElementById("goback");
 back.addEventListener("click", backfunction, false);
 function backfunction(){
+    
+    newWalk.remove();
+
     curDate = new Date(Date.parse(curDate) - 86400000);
     d = curDate.getDate();
     mo = monthNames[curDate.getMonth()];
 
     todayy.innerHTML = mo + " " + d;       
-    //curDate = d;
+    
+    var todayT = new Date();
+    var h = todayT.getHours();
+    var maxTime = 24;
+    var time = parseInt(h / maxTime *100);
+
+    //get the walk data for yesterday from the database 
+
+    var yesterdayRecord = new XMLHttpRequest();
+
+        yesterdayRecord.onreadystatechange = function() {
+            if (yesterdayRecord.readyState == 4) {
+                walkHistory(yesterdayRecord.responseText);
+            }
+        }
+        yesterdayRecord.open("GET", "walks-minus.php", true);
+        yesterdayRecord.send();
+
+        function walkHistory(response) {
+            
+            var walkData = JSON.parse(response);
+            for(var i = 0; i < walkData.length; i++) { 
+                
+                chart = document.getElementById("chart");
+                var aTag = document.createElement('a');
+                var paw = document.createElement('img');
+                
+                aTag.setAttribute("href", "walk-record.php?id="+walkData[i].id);
+                paw.setAttribute("class", "icon");
+                
+                //display a blue icon for walks
+                //display a brown icon for walks where the dog pooped hehe
+
+                    if(walkData[i].poo == "1"){
+                        paw.setAttribute("src", "assets/poopaw.svg")
+                    } else {
+                        paw.setAttribute("src", "assets/paw.svg");
+                    }
+
+                var time = walkData[i].walktime;
+                var newTime = time.substring(0, 2);
+                var Wtime = parseInt(newTime / maxTime *100);
+            
+                //console.log(Wtime);
+                paw.style.marginLeft = Wtime+"%";
+                aTag.appendChild(paw);
+                chart.appendChild(aTag);
+            }
+        }
+
+
 }
 
-
+  
 //Add Walk
 
 window.onload = function(){
@@ -68,8 +166,7 @@ window.onload = function(){
 function walkfunction(){
 
     //display add walk icon based on current time 
-    var newWalk = document.getElementById("add");
-    var chart = document.getElementById("chart");    
+      
     var maxTime = 24;
     var todayT = new Date();
     var h = todayT.getHours();
@@ -78,7 +175,7 @@ function walkfunction(){
     var time = parseInt(h / maxTime *100);
 
     newWalk.style.marginLeft = time+"%";
-    
+    popbox.style.marginLeft = time+"%";
     //get the walk data for today from the database 
 
     var myRequest = new XMLHttpRequest();
@@ -119,6 +216,7 @@ function walkfunction(){
                 //console.log(Wtime);
                 paw.style.marginLeft = Wtime+"%";
                 aTag.appendChild(paw);
+
                 chart.appendChild(aTag);
             }
         }
