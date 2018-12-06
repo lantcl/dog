@@ -24,10 +24,12 @@ $last = $lastwalk["walktime"];
 $tt = "AM";
 if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
 
-$walk = $pdo->prepare("SELECT * FROM `walks` WHERE `id` = $id");
+$walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `walks`.`date`, `walks`.`userid`, `walklength`.`length`, `walks`.`lengthid` FROM `walks` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = '$id'");
+
+$walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `walks`.`date`, `walklength`.`length`, `walks`.`lengthid`, `users`.`firstname`, `walks`.`userid` FROM `walks` INNER JOIN `users` ON `walks`.`userid` = `users`.`id` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = '$id'");
+
 $walk->execute();
 
-// SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`lengthid`, `walks`.`walktime`, `walks`.`date`, `walks`.`userid` FROM `walks` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = 8
 
 ?>
 
@@ -70,10 +72,10 @@ $walk->execute();
                     <div>
                     <h2>Day: <?php echo($row["date"]);?></h2>
                     <h2>time: <?php echo($row["walktime"]);?></h2>
-                    <h2>Walked by: <?php echo($row["userid"]);?></h2>
+                    <h2>Walked by: <?php echo($row["firstname"]);?></h2>
                     <h2>length: <?php echo($row["walklength"]);?></h2>
-                    <h2>Pee: <?php echo($row["pee"]);?></h2>
-                    <h2>poo: <?php echo($row["poo"]);?></h2>
+                    <?php if($row["pee"] == 1){ ?><h2>Pee</h2><?php } ?>
+                    <?php if($row["poo"] == 1){ ?><h2>Poo</h2><?php } ?>
                     <h2>notes: <?php echo($row["notes"]);?></h2>
                 </div>
             <?php }
