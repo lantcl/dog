@@ -40,6 +40,7 @@ var forward = document.getElementById("goforward");
 forward.addEventListener("click", forwardfunction, false);
 function forwardfunction(){
     //curDate = new Date(curDate.parse() + 86400);
+
     curDate = new Date(Date.parse(curDate) + 86400000);
 
     d = curDate.getDate();
@@ -55,7 +56,7 @@ function forwardfunction(){
             }
         }
         tomorrowRecord.open("GET", "walks-plus.php", true);
-        tomorrowRecord.send();
+        tomorrowRecord.send("", d);
 
         function walkHistory(response) {
             
@@ -98,7 +99,11 @@ var back = document.getElementById("goback");
 back.addEventListener("click", backfunction, false);
 function backfunction(){
     
-    newWalk.remove();
+    pastIcons = document.getElementsByClassName("pawbox");
+    while(pastIcons.length > 0){
+        pastIcons[0].parentNode.removeChild(pastIcons[0]);
+    }
+    popbox.remove();
 
     curDate = new Date(Date.parse(curDate) - 86400000);
     d = curDate.getDate();
@@ -131,6 +136,8 @@ function backfunction(){
                 chart = document.getElementById("chart");
                 var aTag = document.createElement('a');
                 var paw = document.createElement('img');
+                var div = document.createElement('div');
+                div.setAttribute("class", "pawbox");
                 
                 aTag.setAttribute("href", "walk-record.php?id="+walkData[i].id);
                 paw.setAttribute("class", "icon");
@@ -148,10 +155,17 @@ function backfunction(){
                 var newTime = time.substring(0, 2);
                 var Wtime = parseInt(newTime / maxTime *100);
             
-                //console.log(Wtime);
                 paw.style.marginLeft = Wtime+"%";
+                div.style.marginLeft = Wtime+"%";
                 aTag.appendChild(paw);
-                chart.appendChild(aTag);
+
+                div.appendChild(aTag);
+
+                var span = document.createElement('span');
+                span.setAttribute("class", "hoverpaw");
+                span.innerHTML = walkData[i].walktime;
+                div.appendChild(span);
+                chart.appendChild(div);
             }
         }
 
@@ -196,7 +210,10 @@ function walkfunction(){
                 chart = document.getElementById("chart");
                 var aTag = document.createElement('a');
                 var paw = document.createElement('img');
-                
+                var div = document.createElement('div');
+                div.setAttribute("class", "pawbox");
+
+
                 aTag.setAttribute("href", "walk-record.php?id="+walkData[i].id);
                 paw.setAttribute("class", "icon");
                 
@@ -212,12 +229,18 @@ function walkfunction(){
                 var time = walkData[i].walktime;
                 var newTime = time.substring(0, 2);
                 var Wtime = parseInt(newTime / maxTime *100);
-            
-                //console.log(Wtime);
+
                 paw.style.marginLeft = Wtime+"%";
+                div.style.marginLeft = Wtime+"%";
                 aTag.appendChild(paw);
 
-                chart.appendChild(aTag);
+                div.appendChild(aTag);
+
+                var span = document.createElement('span');
+                span.setAttribute("class", "hoverpaw");
+                span.innerHTML = walkData[i].walktime;
+                div.appendChild(span);
+                chart.appendChild(div);
             }
         }
 
@@ -243,3 +266,4 @@ walkfunction();
 
 //     chart.appendChild(paw);
 // }
+

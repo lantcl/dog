@@ -210,10 +210,10 @@ li{
   visibility: visible;
 }
 
-#pawbox .hoverpaw {
+.pawbox .hoverpaw {
   visibility: hidden;
-  color: #6FC7B5;
-  background-color: #0B5F64;
+  color: #D09171;
+  background-color: #071F35;
   text-align: center;
   padding: 10px;
   border-radius: 5px;
@@ -224,6 +224,6 @@ li{
   margin-left: -45px;
 }
 
-#pawbox:hover .hoverpaw {
+.pawbox:hover .hoverpaw {
   visibility: visible;
 }
