@@ -125,8 +125,8 @@ function backfunction(){
                 walkHistory(yesterdayRecord.responseText);
             }
         }
-        yesterdayRecord.open("GET", "walks-minus.php", true);
-        yesterdayRecord.send();
+        yesterdayRecord.open("GET", "walks.php", true);
+        yesterdayRecord.send(d);
 
         function walkHistory(response) {
             
@@ -235,10 +235,13 @@ function walkfunction(){
                 aTag.appendChild(paw);
 
                 div.appendChild(aTag);
-
+                
+                tt = "AM";
+                if (walkData[i].walktime > "12:00"){tt = "PM";} 
+                
                 var span = document.createElement('span');
                 span.setAttribute("class", "hoverpaw");
-                span.innerHTML = walkData[i].walktime;
+                span.innerHTML = walkData[i].walktime+ ' '+tt;
                 div.appendChild(span);
                 chart.appendChild(div);
             }

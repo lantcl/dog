@@ -46,12 +46,12 @@ $currentstatus = $stat->fetch();
     <body>
         <header>       
             <h1><a id="logo" href = "main.php">Walky Talky</a></h1>
-            <h1>Last Walk <?php echo($last . ' ' . $tt);?></h1>
+            <h2>Last Walk <?php echo($last . ' ' . $tt);?></h2>
             <?php if($_SESSION['logged-in'] == true){?>
             <a href = "logout.php"><h2>Log Out</h2></a>
             <a href = "profile.php"><img id="usericon" src="assets/<?php echo($user["profilepic"]);?>" alt="profile icon"></a>
         <?php } else {?>
-            <h1><a href = "login.php">Log In</a></h1>
+            <h2><a href = "login.php">Log In</a></h2>
         <?php } ?>
         </header>
 
@@ -95,14 +95,8 @@ $currentstatus = $stat->fetch();
                 </div>
             </div>
         </section>
-        <footer>
-            <nav>
-                <ul id="footernav">
-                <li><a href = "#">About Walky Talky</a></li> 
-                <li><a href = "#">Contribute</a></li>
-                <li><a href = "#">Privacy Policy</a></li>  
-                </ul>
-            </nav>
+        <footer id="footernav">
+                <h2>Keep track with your pack</h2>
         </footer>
         <script src="js/script.js"></script>
     </body>
