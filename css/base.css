@@ -14,6 +14,10 @@ h1{
   font-weight: normal;
 }
 
+p{
+  color: #D8B080;
+}
+
 h2{
   color: #6FC7B5;
   font-size: 1.5em;
@@ -45,20 +49,25 @@ a{
 
 li{
   list-style: none;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
-.button {
-  background-color: #0B5F64;
-  border: none;
-  padding: 15px 32px;
+
+#lastWalkTime{
+  position: absolute;
+  align-self: center;
   text-align: center;
-  text-decoration: none;
-  display: flex;
-  color: #D09171;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: normal;
-  letter-spacing: 2px;
+  width: 100%;
+  left: 0px;
+}
+
+#onTopHeader{
+  z-index: 10;
+}
+
+.logInOut{
+  color: #5E8F96;
+  vertical-align: sub;
 }
 
 #subhead{
@@ -67,6 +76,13 @@ li{
   justify-content: space-between;
 	height: 75px;	
   padding: 10px 40px 0px 40px;
+}
+
+#statusBar{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  margin-left: -46px;
 }
 
 #footernav{
@@ -78,7 +94,9 @@ li{
 #main{
   display: flex;
   justify-content: center;
+  margin-top: 40px;
 }
+
 
 #usericon {
   width:75px;
@@ -86,8 +104,15 @@ li{
 }
 
 #logo{
-  color: #D09171;
+  color: #D8B080;
   font-weight: bold; 
+}
+
+@media only screen and (max-width: 878px) {
+    #logo{
+    font-size: .8em;
+    font-weight: normal; 
+  }
 }
 
 #daynav{
@@ -132,7 +157,7 @@ li{
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #3E8E41;
 }
 
 
@@ -150,8 +175,32 @@ li{
   top: 100px;
 }
 
-.input{
+input{
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #D8B080;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  outline: none;
+}
 
+input[type=text]:focus {
+  border: 1px solid #6FC7B5;
+}
+
+
+.button {
+  background-color: #0B5F64;
+  border: none;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #D8B080;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: normal;
+  letter-spacing: 2px;
+  font-size: 1em;
+  cursor: pointer;
 }
 
 #timeline {
@@ -204,7 +253,7 @@ li{
 
 .pawbox .hoverpaw {
   visibility: hidden;
-  color: #D09171;
+  color: #D8B080;
   background-color: #071F35;
   text-align: center;
   padding: 10px;

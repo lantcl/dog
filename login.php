@@ -38,35 +38,44 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
     </head>
     <body>
-        <header>       
-            <h1><a id="logo" href = "main.php">Walky Talky</a></h1>
-            <h1>Last Walk <?php echo($lastTime);?></h1>
+        <header>   
+            <h1 style="z-index: 10"><a id="logo" href = "main.php">Walky Talky</a></h1>
+                <div id="lastWalkTime">
+                    <h2>Last Walk <?php echo($last . ' ' . $tt);?></h2>
+                </div> 
             <?php if($_SESSION['logged-in'] == true){?>
-            <a href = "user-profile.php"><img id="usericon" src="assets/<?php echo($user["profilepic"]);?>" alt="profile icon"></a>
+                <a href = "profile.php" style="z-index: 10"><img id="usericon" src="assets/<?php echo($user["profilepic"]);?>" alt="profile icon"></a>
         <?php } else {?>
-            <h1><a href = "login.php">Log In</a></h1>
+            <h2 style="z-index: 10"><a href = "login.php" class="logInOut">Log In</a></h2>
         <?php } ?>
         </header>
 
         <section id="subhead">         
             <section class="dropdown">
-                <img id="menubutton" class= "arrowbutton" src="assets/menubutton.svg" alt="menuicon">
+                <img id="menubutton" class= "arrowbutton" src="assets/menubutton.svg" alt="menuicon" style="z-index: 10">
                 <nav class="dropdown-content">
                     <ul>
-                    <li><a href = "main.html">Home</a></li>
-                    <li><a href = "walk-history.html">Walk History</a></li>
-                    <li><a id = "newwalk" href = "#">Add Walk</a></li>
+                    <li><a href = "main.php">Home</a></li>
+                    <li><a href = "pack.php">My Pack</a></li>
+                    <li><a id = "newWalk" href = "add-walk.php">Add Walk</a></li>
+                    <li><a id = "notice" href = "status.php">Update Dog Status</a></li>
                     </ul>
                 </nav>          
             </section>            
-            <h2>Notice Goes here</h2>
+            <?php if($_SESSION['logged-in'] == true){ ?>            
+            <div id="statusBar"> 
+                <h2><?php echo($user["name"].' '.$currentstatus["status"]);?></h2>
+            </div>
+        <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
         <section>
             <div id="daynav">
             <h2 id="today"></h2>
             </div>
-            <div class ="main">        
+        </section>
+        <section id="main">
+            <div>        
             <h1>Welcome back</h1>
                 <form action="login-process.php" method="POST"> 
                 <h2>Username: <input type="text" name="username" /></h2>
@@ -75,14 +84,8 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
             	</form>
             </div>
         </section>
-        <footer>
-            <nav>
-                <ul id="footernav">
-                <li><a href = "#">About Walky Talky</a></li> 
-                <li><a href = "#">Contribute</a></li>
-                <li><a href = "#">Privacy Policy</a></li>  
-                </ul>
-            </nav>
+        <footer id="footernav">
+                <h2>Keep track with your pack</h2>
         </footer>
         <script src="js/script.js"></script>       
     </body>

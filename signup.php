@@ -5,17 +5,37 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <header>        
-            <a href = "#"><img src="#" alt="dog" style="width:100px"></a>
-            <nav>
-                <ul>
-                <li><a href = "main.html">Home</a></li>
-                <li><a href = "#">Search</a></li>
-                <li><a href = "login.html">Log in</a></li>
-                <li><a href = "signup.html">Sign up</a></li>
-                </ul>
-            </nav>
+        <header>   
+            <h1 style="z-index: 10"><a id="logo" href = "main.php">Walky Talky</a></h1>
+                <div id="lastWalkTime">
+                    <h2>Last Walk <?php echo($last . ' ' . $tt);?></h2>
+                </div> 
+            <?php if($_SESSION['logged-in'] == true){?>
+                <a href = "profile.php" style="z-index: 10"><img id="usericon" src="assets/<?php echo($user["profilepic"]);?>" alt="profile icon"></a>
+        <?php } else {?>
+            <h2 style="z-index: 10"><a href = "login.php" class="logInOut">Log In</a></h2>
+        <?php } ?>
         </header>
+
+        <section id="subhead">         
+            <section class="dropdown">
+                <img id="menubutton" class= "arrowbutton" src="assets/menubutton.svg" alt="menuicon" style="z-index: 10">
+                <nav class="dropdown-content">
+                    <ul>
+                    <li><a href = "main.php">Home</a></li>
+                    <li><a href = "pack.php">My Pack</a></li>
+                    <li><a id = "newWalk" href = "add-walk.php">Add Walk</a></li>
+                    <li><a id = "notice" href = "status.php">Update Dog Status</a></li>
+                    </ul>
+                </nav>          
+            </section>            
+            <?php if($_SESSION['logged-in'] == true){ ?>            
+            <div id="statusBar"> 
+                <h2><?php echo($user["name"].' '.$currentstatus["status"]);?></h2>
+            </div>
+        <?php } ?>
+            <h2><span id="datetime"></span></h2>
+        </section>
         <section>
             <h1>Welcome to DOG</h1>
                 <form action="#" method="POST"> 
