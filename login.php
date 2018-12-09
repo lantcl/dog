@@ -80,7 +80,7 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
                 <form action="login-process.php" method="POST"> 
                 <h2>Username: <input type="text" name="username" /></h2>
                 <h2>Password: <input type="text" name="password" /></h2>
-                <input class="button" type="submit" text="submit"/>
+                <input class="button" type="submit" value="submit"/>
             	</form>
             </div>
         </section>

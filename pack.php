@@ -1,9 +1,7 @@
-<?php
-
+<?php 
 session_start();
 
 $userid = $_SESSION['id'];
-$id = $_GET['id'];
 
 $dsn = "mysql:host=localhost;dbname=lantc_dog;charset=utf8mb4";
 $dbusername = "lantc";
@@ -11,12 +9,14 @@ $dbpassword = "NkXHus3h!6V";
 
 $pdo = new PDO($dsn, $dbusername, $dbpassword);
 
-$row = $pdo->prepare("SELECT * FROM `users` WHERE `id` = $userid");
+// $row = $pdo->prepare("SELECT * FROM `users` WHERE `id` = $userid");
+$row = $pdo->prepare("SELECT `users`.`firstname`, `users`.`profilepic`, `dog`.`id`, `dog`.`name`, `dog`.`photo` FROM `users` INNER JOIN `dog` ON `users`.`dogid` = `dog`.`id` WHERE `users`.`id` = '$userid'");
 $row->execute();
 $user = $row->fetch();
 
-$stmt = $pdo->prepare("SELECT * FROM `walks` WHERE `id` IN (SELECT MAX(`id`) FROM `walks`)");
+$dog = $user["id"];
 
+$stmt = $pdo->prepare("SELECT * FROM `walks` WHERE `id` IN (SELECT MAX(`id`) FROM `walks`)");
 $stmt->execute();
 $lastwalk = $stmt->fetch();
 
@@ -24,19 +24,19 @@ $last = $lastwalk["walktime"];
 $tt = "AM";
 if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
 
-$walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `walks`.`date`, `walks`.`userid`, `walklength`.`length`, `walks`.`lengthid` FROM `walks` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = '$id'");
+$stat = $pdo->prepare("SELECT * FROM `status` WHERE `feature` = 1");
+$stat->execute();
+$currentstatus = $stat->fetch();
 
-$walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `walks`.`date`, `walklength`.`length`, `walks`.`lengthid`, `users`.`firstname`, `walks`.`userid`, `walklength`.`badge` FROM `walks` INNER JOIN `users` ON `walks`.`userid` = `users`.`id` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = '$id'");
-
-$walk->execute();
-
+$pack = $pdo->prepare("SELECT * FROM `users` WHERE `dogid` = $dog");
+$pack->execute();
 
 ?>
 
 <!doctype html>
 <html>
     <head>
-        <title>Walk History</title>
+        <title>Walky-Talky</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
@@ -73,24 +73,29 @@ $walk->execute();
         <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
-
-        <section id="main"> 
-        <?php
-            while($row = $walk->fetch()) {     
-                ?>  
-        <h1>Walk Record for <?php echo($row["date"]);?></h1>
-        </section>      
-            <div class="mainContent">
-                    <img id="usericon" src="assets/<?php echo($row["badge"]);?>" alt="badge icon">
-                    <h2>time: <?php echo($row["walktime"]);?></h2>
-                    <h2>Walked by: <?php echo($row["firstname"]);?></h2>
-                    <h2>length: <?php echo($row["length"]);?></h2>
-                    <?php if($row["pee"] == 1){ ?><h2>Pee</h2><?php } ?>
-                    <?php if($row["poo"] == 1){ ?><h2>Poo</h2><?php } ?>
-                    <h2>notes: <?php echo($row["notes"]);?></h2>
+        
+        <section id="main">
+            <?php if($_SESSION['logged-in'] == true){?>
+                <h1>My Pack</h1>
+        </section>
+                <div class="packDog">
+                    <img id="dogicon" src="assets/<?php echo($user["photo"]);?>" alt="dog icon"></a>
+                    <h2><?php echo($user["name"]);?></h2>
                 </div>
-            <?php }
-            ?>
+            <div class="pack">
+            <?php
+                while($row5 = $pack->fetch()) { ?>
+            <div>
+                <a href="pack-profile.php?userid=<?php echo($row5["id"]);?>"><img id="usericon" src="assets/<?php echo($row5["profilepic"]);?>"></a>
+                <h2><?php echo($row5["firstname"]);?></h2>
+            </div>
+        
+        <?php } ?>
+        </div>
+        <?php } else {?>
+            <h1>You must be logged in to view your pack page</h1>
+            <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" style="width: 50px"></a>
+        <?php } ?>
         
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
@@ -98,3 +103,4 @@ $walk->execute();
         <script src="js/script.js"></script>
     </body>
 </html>
+

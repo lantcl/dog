@@ -97,10 +97,31 @@ li{
   margin-top: 40px;
 }
 
+.mainContent{
+  text-align: center;
+}
+
+.packDog{
+  text-align: center;
+}
+
+.pack{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  text-align: center; 
+}
 
 #usericon {
   width:75px;
+  height:75px;
   border-radius: 50%;
+}
+
+#dogicon {
+  width:150px;
+  border-radius: 50%;
+  height:155px;
 }
 
 #logo{

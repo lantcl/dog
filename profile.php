@@ -70,26 +70,23 @@ $currentstatus = $stat->fetch();
         <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
-        
-        <section>
-            <div id="daynav">
-            <h2 id="today"></h2>
-            </div>        
-            <section id="main">
-                <h1>My Profile </h1>
+        <section id="main">
+            <h1>My Profile </h1>
+        </section>
+            <div class="mainContent">
                 <?php while($row2 = $userInfo->fetch()){ ?>
                     <img id="usericon" src="assets/<?php echo($row2["profilepic"]);?>" alt="profile icon">
-                    <h2>Name <?php echo($row2["firstname"].' '.$row2["lastname"]);?></h2>
-                    <h2>Phone number <?php echo($row2["number"]);?></h2>
-                    <h2>Email <?php echo($row2["email"]);?></h2>
+                    <a href="edit-profile.php"><p>Edit Profile</p></a>
+                    <h2><?php echo($row2["firstname"].' '.$row2["lastname"]);?></h2>
+                    <h2><?php echo($row2["phone"]);?></h2>
+                    <h2><?php echo($row2["email"]);?></h2>
                <?php } ?>
-               <h2 id="editProfile">Edit Profile information</h2>
+               <a href="logout.php"><p>Log Out</p></a>
             </div>
-        </section>
+        
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
         </footer>
         <script src="js/script.js"></script>
     </body>
 </html>
-

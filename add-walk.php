@@ -20,7 +20,8 @@ $lastwalk = $stmt->fetch();
 
 $last = $lastwalk["walktime"];
 $tt = "AM";
-if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
+if ($last > '12:00'){$last = $last - '12:00'; $tt = "PM";} 
+
 
 ?>
 
@@ -63,11 +64,14 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
         <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
-        
+
         <section id="main"> 
-<?php if($_SESSION['logged-in'] == true){ ?>
+            <?php if($_SESSION['logged-in'] == true){ ?>
+            <h1>Add a Walk Record</h1>
+        </section>
             <section class="form">  
-            <h2>Add a Walk Record</h2>      
+            
+            <div class="mainContent">      
      		<form action="add-walk-process.php" method="POST"><br>
      			<input type = "hidden" name="dogid" value="1"/><br>
                 <input type = "date" name="date" autocomplete="on" required><br> 
@@ -85,14 +89,15 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
 				Poop <input type="checkbox" name="poo" value="1" />
 				
 				Notes:<textarea name="notes"></textarea>
-				<input type = "submit"/><br>
+				<input class="button" type="submit" value="submit"/>
      		</form>
+            </div>
             </section>
         <?php } else { ?>
             <h1>You must be logged in to add a walk record</h1>
             <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" style="width: 50px"></a>
         <?php } ?>
-        </section>
+        
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
         </footer>

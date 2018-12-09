@@ -72,11 +72,6 @@ $stats->execute();
         <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
-        <section>
-            <div id="daynav">
-            <h2 id="today"></h2>
-            </div>
-        </section>
         <section id = "main">
 <?php if($_SESSION['logged-in'] == true){?>
         <h1>Update featured dog status</h1>
