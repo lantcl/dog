@@ -74,9 +74,8 @@ $pack->execute();
             <h2><span id="datetime"></span></h2>
         </section>
         <section id="main">
+            <div class="mainContent">
             <?php if($_SESSION['logged-in'] == true){?>
-            
-                <div class="mainContent">
                 <h1>My Pack</h1>
                 <div class="packDog">
                     <img id="dogicon" src="assets/<?php echo($user["photo"]);?>" alt="dog icon"></a>
@@ -97,7 +96,7 @@ $pack->execute();
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
         </footer>
-        <script src="js/script.js"></script>
+        <script src="js/sub-script.js"></script>
     </body>
 </html>
 

@@ -1,10 +1,11 @@
 console.log("connected");
 
-//Time Display
+
 var newWalk = document.getElementById("add");
 var popbox = document.getElementById("popbox");
 var chart = document.getElementById("chart");
 
+//Time Display
 (function startTime() {
     var today = new Date();
     var h = today.getHours();
@@ -42,7 +43,7 @@ function forwardfunction(){
     //curDate = new Date(curDate.parse() + 86400);
 
     curDate = new Date(Date.parse(curDate) + 86400000);
-
+    console.log(curdate);
     d = curDate.getDate();
     mo = monthNames[curDate.getMonth()];
 
@@ -56,7 +57,7 @@ function forwardfunction(){
             }
         }
         tomorrowRecord.open("GET", "walks-plus.php", true);
-        tomorrowRecord.send("", d);
+        tomorrowRecord.send();
 
         function walkHistory(response) {
             
@@ -115,6 +116,8 @@ function backfunction(){
     var h = todayT.getHours();
     var maxTime = 24;
     var time = parseInt(h / maxTime *100);
+    
+    //console.log(curDate);
 
     //get the walk data for yesterday from the database 
 
@@ -125,12 +128,13 @@ function backfunction(){
                 walkHistory(yesterdayRecord.responseText);
             }
         }
-        yesterdayRecord.open("GET", "walks.php", true);
-        yesterdayRecord.send(d);
-
+            console.log(curDate);
+        
+        
         function walkHistory(response) {
             
             var walkData = JSON.parse(response);
+            console.log(walkData);
             for(var i = 0; i < walkData.length; i++) { 
                 
                 chart = document.getElementById("chart");
@@ -168,6 +172,9 @@ function backfunction(){
                 chart.appendChild(div);
             }
         }
+        yesterdayRecord.open("POST", "walks-request.php", true);
+        yesterdayRecord.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        yesterdayRecord.send("testing=" + curDate);
 
 
 }
@@ -251,17 +258,3 @@ function walkfunction(){
 walkfunction();
 }
 
-
-var mainContent = document.getElementsByClassName("mainContent[0]");
-
-console.log(mainContent);
-
-var destroy = document.getElementById("destroyRecord");
-var youSure = document.createElement("h1").innerHTML = 'Are you really sure?';
-
-destroy.addEventListener("click", deleteFunction, false);
-
-function deleteFunction(){
-    mainContent.innerHTML = '';
-    mainContent.appendChild(youSure);
-}

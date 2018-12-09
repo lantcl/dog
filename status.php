@@ -90,14 +90,14 @@ $stats->execute();
         </div></section>
     <?php } else { ?>
         <h1>You must be logged in to update the dog status</h1>
-        <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" style="width: 50px"></a>
+        <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" class="noticePaws"></a>
     <?php } ?>
     </div>
     </section>
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
         </footer>
-        <script src="js/script.js"></script>
+        <script src="js/sub-script.js"></script>
     </body>
 </html>
 

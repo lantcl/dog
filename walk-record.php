@@ -108,6 +108,6 @@ $walk->execute();
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
         </footer>
-        <script src="js/script.js"></script>
+        <script src="js/sub-script.js"></script>
     </body>
 </html>

@@ -95,7 +95,7 @@ if ($last > '12:00'){$last = $last - '12:00'; $tt = "PM";}
             </section>
         <?php } else { ?>
             <h1>You must be logged in to add a walk record</h1>
-            <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" style="width: 50px"></a>
+            <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" class="noticePaws"></a>
         <?php } ?>
         
         <footer id="footernav">
