@@ -72,22 +72,27 @@ $stats->execute();
         <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
+
         <section id = "main">
+            <div class="mainContent">
 <?php if($_SESSION['logged-in'] == true){?>
         <h1>Update featured dog status</h1>
-        <form action="status-process.php" method="POST">         
-            <select name="id">
+        <img src="assets/poopaw.svg" alt="paw icon" class="noticePaws">
+            <form action="status-process.php" method="POST">       
+            <p><select name="id">
                 <?php while($statList = $stats->fetch(PDO::FETCH_ASSOC)) { ?>
                 <option value="<?php echo($statList["id"]);?>"><?php echo($statList["status"]); ?>
                 </option>
                 <?php } ?>
-                <input type="submit" /> 
-            </select>         
-        </form>
+            </select></p>
+            <p><input class="button" type="submit" value="submit"/></p>
+        </form>     
+        </div></section>
     <?php } else { ?>
         <h1>You must be logged in to update the dog status</h1>
         <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" style="width: 50px"></a>
     <?php } ?>
+    </div>
     </section>
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>

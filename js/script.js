@@ -250,23 +250,18 @@ function walkfunction(){
 }
 walkfunction();
 }
-//minutes seconds in the day
 
 
-// var walkTime = ;
+var mainContent = document.getElementsByClassName("mainContent[0]");
 
-// w = Math.round(maxTime / walkTime )*10; //should give percent value
-//Percentage = (number * 100 / total);
-//icon width = w +'%';
+console.log(mainContent);
 
+var destroy = document.getElementById("destroyRecord");
+var youSure = document.createElement("h1").innerHTML = 'Are you really sure?';
 
-// for (var i=0; i<walkData; i++){
-//     // var a = document.createElement("a");
-//     var paw = document.createElement("img").id = "icon";
-//     paw.src = "../assets/paw.svg";
-//     var place = walkData[i].walktime;
-//     paw.style.width = "place + %"; 
+destroy.addEventListener("click", deleteFunction, false);
 
-//     chart.appendChild(paw);
-// }
-
+function deleteFunction(){
+    mainContent.innerHTML = '';
+    mainContent.appendChild(youSure);
+}

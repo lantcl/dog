@@ -6,6 +6,7 @@ body {
   font-weight: normal;
   letter-spacing: 2px;
   color: #6FC7B5;
+  overflow: scroll;
   }  
 
 h1{
@@ -34,9 +35,10 @@ header {
 footer {
   background-color: #071F35;
   bottom:0px;
-  position: fixed;
   width: 100%;
   left:0px;
+  z-index: 3;
+  position: fixed;
   }
 
 a{
@@ -68,6 +70,7 @@ li{
 .logInOut{
   color: #5E8F96;
   vertical-align: sub;
+  cursor: pointer;
 }
 
 #subhead{
@@ -95,10 +98,13 @@ li{
   display: flex;
   justify-content: center;
   margin-top: 40px;
+  margin-bottom: 200px;
+  height:500px;
 }
 
 .mainContent{
   text-align: center;
+  width: 100%;
 }
 
 .packDog{
@@ -107,9 +113,23 @@ li{
 
 .pack{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-top: 30px;
   text-align: center; 
+}
+
+#recordColumns{
+  display: flex;
+  justify-content: center;
+  text-align: right;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#rightColumn h2{
+  color: #D8B080; 
+  text-align: left;
+  margin-left: 20px;
 }
 
 #usericon {
@@ -149,10 +169,28 @@ li{
   padding-right: 40px;  
 }
 
+
+/*  select */
+select {
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #0B5F64;
+  border-radius: 4px;
+  border: 1px solid #D8B080;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  outline: none;
+  width: 300px;
+}
+
+
+
 /*  Menu */
 .dropdown {
-    position: relative;
-    display: flex;
+  position: relative;
+  display: flex;
+  width: 350px;
 }
 
 .dropdown-content {
@@ -190,14 +228,19 @@ li{
   top: 100px;
 }
 
-.form{
-  display: flex;
+
+form{
+  display: block;
   justify-content: center;
-  top: 100px;
+  top: 0px;
 }
 
 input{
-  width: 100%;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #0B5F64;
+  width: 300px;
   border-radius: 4px;
   border: 1px solid #D8B080;
   box-sizing: border-box;
@@ -209,6 +252,34 @@ input[type=text]:focus {
   border: 1px solid #6FC7B5;
 }
 
+textarea {
+  color: #0B5F64;;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: normal;
+  letter-spacing: 2px;
+  width: 300px;
+  height: 100px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 1px solid #D8B080;
+  border-radius: 4px;
+  resize: none;
+}
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  width:30px;
+  height:40px;
+  background:white;
+  border-radius: 4px;
+  border: 1px solid #D8B080;
+}
+input[type=checkbox]:checked {
+  border: 1px solid #6FC7B5;
+  background: #6FC7B5;
+}
 
 .button {
   background-color: #0B5F64;
@@ -222,6 +293,12 @@ input[type=text]:focus {
   letter-spacing: 2px;
   font-size: 1em;
   cursor: pointer;
+}
+
+.checkboxes{
+  width: 300px;
+  display: inline-flex;
+  justify-content: space-around;
 }
 
 #timeline {
@@ -248,6 +325,11 @@ input[type=text]:focus {
   z-index: 2;
   width: 40px;
   cursor: pointer;
+}
+
+.noticePaws{
+  width: 50px;
+  margin: -10px 10px 15px;
 }
 
 #add{

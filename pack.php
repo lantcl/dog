@@ -73,11 +73,11 @@ $pack->execute();
         <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
-        
         <section id="main">
             <?php if($_SESSION['logged-in'] == true){?>
+            
+                <div class="mainContent">
                 <h1>My Pack</h1>
-        </section>
                 <div class="packDog">
                     <img id="dogicon" src="assets/<?php echo($user["photo"]);?>" alt="dog icon"></a>
                     <h2><?php echo($user["name"]);?></h2>
@@ -89,14 +89,11 @@ $pack->execute();
                 <a href="pack-profile.php?userid=<?php echo($row5["id"]);?>"><img id="usericon" src="assets/<?php echo($row5["profilepic"]);?>"></a>
                 <h2><?php echo($row5["firstname"]);?></h2>
             </div>
-        
-        <?php } ?>
-        </div>
-        <?php } else {?>
+        <?php }  } else {?>
             <h1>You must be logged in to view your pack page</h1>
-            <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" style="width: 50px"></a>
+            <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" class="noticePaws"></a>
         <?php } ?>
-        
+    </div></section>
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
         </footer>

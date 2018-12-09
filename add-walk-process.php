@@ -7,7 +7,6 @@ if($_SESSION['logged-in'] == true){
 $userid = $_SESSION['id'];
 $dogid = $_POST['dogid'];
 $lengthid = $_POST['lengthid'];
-// $time = $_POST['time'];
 $time = $_POST['walktime'];
 $date = $_POST['date'];
 $pee = $_POST['pee'];

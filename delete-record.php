@@ -24,6 +24,7 @@ $last = $lastwalk["walktime"];
 $tt = "AM";
 if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
 
+$walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `walks`.`date`, `walks`.`userid`, `walklength`.`length`, `walks`.`lengthid` FROM `walks` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = '$id'");
 
 $walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `walks`.`date`, `walks`.`notes`, `walklength`.`length`, `walks`.`lengthid`, `users`.`firstname`, `walks`.`userid`, `walklength`.`badge` FROM `walks` INNER JOIN `users` ON `walks`.`userid` = `users`.`id` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = '$id'");
 
@@ -78,10 +79,10 @@ $walk->execute();
         <?php
             while($row = $walk->fetch()) {     
                 ?>  
-        <h1>Walk Record for <?php echo($row["date"]);?></h1>
-        <img id="usericon" src="assets/<?php echo($row["badge"]);?>" alt="badge icon">
+        <h1 id="heading">Do you really want to delete this record?</h1>
             <div id="recordColumns">
                 <div id="leftColumn">
+                    <h2>Date</h2>
                     <h2>Time</h2>
                     <h2>Walked by</h2>
                     <h2>length</h2>
@@ -89,6 +90,7 @@ $walk->execute();
                     <h2>notes</h2>
                 </div>
                 <div id="rightColumn">
+                    <h2><?php echo($row["date"]);?></h2>
                     <h2><?php echo($row["walktime"]);?></h2>
                     <h2><?php echo($row["firstname"]);?></h2>
                     <h2><?php echo($row["length"]);?></h2>
@@ -99,8 +101,8 @@ $walk->execute();
                </div> 
            </div>
            <br>
-            <a href="edit-record.php?id=<?php echo($id);?>"><p>Edit Record</p></a>
-            <a href="delete-record.php?id=<?php echo($id);?>"><p class="logInOut">Delete Record</p></a>
+            <p id="destroyRecord"class="logInOut">Yes, destroy it</p>
+            <a style="display: none" href="delete-process.php?id=<?php echo($id);?>" id="kill"class="logInOut"><p>Yes, do it</p></a>
             <?php }
             ?>
         </div>
@@ -108,6 +110,6 @@ $walk->execute();
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
         </footer>
-        <script src="js/script.js"></script>
+        <script src="js/delete.js"></script>
     </body>
 </html>

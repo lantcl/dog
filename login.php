@@ -69,17 +69,13 @@ if ($last > '12:00'){$last = $last - '12'; $tt = "PM";}
         <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
-        <section>
-            <div id="daynav">
-            <h2 id="today"></h2>
-            </div>
-        </section>
         <section id="main">
-            <div>        
+            <div class="mainContent">      
             <h1>Welcome back</h1>
+            <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" class="noticePaws"></a>
                 <form action="login-process.php" method="POST"> 
-                <h2>Username: <input type="text" name="username" /></h2>
-                <h2>Password: <input type="text" name="password" /></h2>
+                <input type="text" name="username" placeholder="username" />
+                <h2><input type="text" name="password" placeholder="password" /></h2>
                 <input class="button" type="submit" value="submit"/>
             	</form>
             </div>

@@ -13,6 +13,7 @@ $row = $pdo->prepare("SELECT * FROM `users` WHERE `id` = $userid");
 $row->execute();
 $user = $row->fetch();
 
+
 $stmt = $pdo->prepare("SELECT * FROM `walks` WHERE `id` IN (SELECT MAX(`id`) FROM `walks`)");
 
 $stmt->execute();
@@ -65,31 +66,30 @@ if ($last > '12:00'){$last = $last - '12:00'; $tt = "PM";}
             <h2><span id="datetime"></span></h2>
         </section>
 
-        <section id="main"> 
+        <section id="main">
+        <div class="mainContent"> 
             <?php if($_SESSION['logged-in'] == true){ ?>
             <h1>Add a Walk Record</h1>
-        </section>
+            <img src="assets/poopaw.svg" alt="paw icon" class="noticePaws">
             <section class="form">  
-            
-            <div class="mainContent">      
-     		<form action="add-walk-process.php" method="POST"><br>
-     			<input type = "hidden" name="dogid" value="1"/><br>
-                <input type = "date" name="date" autocomplete="on" required><br> 
-<!-- 				<input type = "time" autocomplete="on" name="time" required><br>  -->
-                <input type = "time" autocomplete="on" name="walktime" required><br>
-				Walk Length:<select name="lengthid">
+                 
+     		<form action="add-walk-process.php" method="POST">
+     			<input type = "hidden" name="dogid" value="<?php echo($user["dogid"])?>"/>
+                <p><input type = "date" name="date" autocomplete="on" required></p>
+                <p><input type = "time" name="walktime" required></p>
+				<p><select name="lengthid">
                         <option value="1">quick pee - 5 minutes</option>
                         <option value="2">around the block - 10 minutes</option>
                         <option value="3">normal walk - 15-20 minutes</option>
                         <option value="4">long walk - 25-40 minutes</option>
                         <option value="5">gold star walk - 25-40 minutes</option>
-                    </select><br>
-
-				Pee <input type="checkbox" name="pee" value="1" />
-				Poop <input type="checkbox" name="poo" value="1" />
-				
-				Notes:<textarea name="notes"></textarea>
-				<input class="button" type="submit" value="submit"/>
+                </select></p>
+                <div class="checkboxes">
+				<p>pee</p><input type="checkbox" name="pee" value="1" />
+				<p>poo</p><input type="checkbox" name="poo" value="1" />
+                </div><br>
+                <p><textarea name="notes" placeholder="notes"></textarea></p>
+				<p><input class="button" type="submit" value="submit"/></p>
      		</form>
             </div>
             </section>

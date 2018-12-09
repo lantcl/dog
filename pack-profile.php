@@ -72,18 +72,17 @@ $currentstatus = $stat->fetch();
             <h2><span id="datetime"></span></h2>
         </section>      
             <section id="main">
-            <?php while($row2 = $userInfo->fetch()){ ?>    
+            <?php while($row2 = $userInfo->fetch()){ ?> 
+                <div class="mainContent">   
                 <h1><?php echo($row2["firstname"]);?>'s Profile </h1>
-            </section>
-                <div class="mainContent">
-                
+            
                     <img id="usericon" src="assets/<?php echo($row2["profilepic"]);?>" alt="profile icon">
                     <h2><?php echo($row2["firstname"].' '.$row2["lastname"]);?></h2>
                     <h2><?php echo($row2["phone"]);?></h2>
                     <h2><?php echo($row2["email"]);?></h2>
+                </div>
                <?php } ?>
-            </div>
-        
+            </section>
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
         </footer>
