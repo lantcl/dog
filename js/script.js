@@ -37,147 +37,146 @@ var curDate = todaydate;
 //Clock Buttons
 
 
-var forward = document.getElementById("goforward");
-forward.addEventListener("click", forwardfunction, false);
-function forwardfunction(){
-    //curDate = new Date(curDate.parse() + 86400);
+// var forward = document.getElementById("goforward");
+// forward.addEventListener("click", forwardfunction, false);
+// function forwardfunction(){
+//     //curDate = new Date(curDate.parse() + 86400);
 
-    curDate = new Date(Date.parse(curDate) + 86400000);
-    console.log(curdate);
-    d = curDate.getDate();
-    mo = monthNames[curDate.getMonth()];
+//     curDate = new Date(Date.parse(curDate) + 86400000);
+//     d = curDate.getDate();
+//     mo = monthNames[curDate.getMonth()];
 
-    todayy.innerHTML = mo + " " + d;
-    //curDate = d;
-    var tomorrowRecord = new XMLHttpRequest();
+//     todayy.innerHTML = mo + " " + d;
+//     //curDate = d;
+//     var tomorrowRecord = new XMLHttpRequest();
 
-        tomorrowRecord.onreadystatechange = function() {
-            if (tomorrowRecord.readyState == 4) {
-                walkHistory(tomorrowRecord.responseText);
-            }
-        }
-        tomorrowRecord.open("GET", "walks-plus.php", true);
-        tomorrowRecord.send();
+//         tomorrowRecord.onreadystatechange = function() {
+//             if (tomorrowRecord.readyState == 4) {
+//                 walkHistory(tomorrowRecord.responseText);
+//             }
+//         }
 
-        function walkHistory(response) {
+//         function walkHistory(response) {
             
-            var walkData = JSON.parse(response);
-            for(var i = 0; i < walkData.length; i++) { 
+//             var walkData = JSON.parse(response);
+//             for(var i = 0; i < walkData.length; i++) { 
                 
-                chart = document.getElementById("chart");
-                var aTag = document.createElement('a');
-                var paw = document.createElement('img');
+//                 chart = document.getElementById("chart");
+//                 var aTag = document.createElement('a');
+//                 var paw = document.createElement('img');
                 
-                aTag.setAttribute("href", "walk-record.php?id="+walkData[i].id);
-                paw.setAttribute("class", "icon");
+//                 aTag.setAttribute("href", "walk-record.php?id="+walkData[i].id);
+//                 paw.setAttribute("class", "icon");
                 
-                //display a blue icon for walks
-                //display a brown icon for walks where the dog pooped hehe
+//                 //display a blue icon for walks
+//                 //display a brown icon for walks where the dog pooped hehe
 
-                    if(walkData[i].poo == "1"){
-                        paw.setAttribute("src", "assets/poopaw.svg")
-                    } else {
-                        paw.setAttribute("src", "assets/paw.svg");
-                    }
+//                     if(walkData[i].poo == "1"){
+//                         paw.setAttribute("src", "assets/poopaw.svg")
+//                     } else {
+//                         paw.setAttribute("src", "assets/paw.svg");
+//                     }
 
-                var time = walkData[i].walktime;
-                var newTime = time.substring(0, 2);
-                var Wtime = parseInt(newTime / maxTime *100);
+//                 var time = walkData[i].walktime;
+//                 var newTime = time.substring(0, 2);
+//                 var Wtime = parseInt(newTime / maxTime *100);
             
-                //console.log(Wtime);
-                paw.style.marginLeft = Wtime+"%";
-                aTag.appendChild(paw);
+//                 //console.log(Wtime);
+//                 paw.style.marginLeft = Wtime+"%";
+//                 aTag.appendChild(paw);
 
-                chart.appendChild(aTag);
-            }
-        }
+//                 chart.appendChild(aTag);
+//             }
+//         }
 
+//         tomorrowRecord.open("POST", "walks-request.php", true);
+//         tomorrowRecord.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//         tomorrowRecord.send("testing=" + curDate);
 
+// }
 
-}
-
-var back = document.getElementById("goback");
-back.addEventListener("click", backfunction, false);
-function backfunction(){
+// var back = document.getElementById("goback");
+// back.addEventListener("click", backfunction, false);
+// function backfunction(){
     
-    pastIcons = document.getElementsByClassName("pawbox");
-    while(pastIcons.length > 0){
-        pastIcons[0].parentNode.removeChild(pastIcons[0]);
-    }
-    popbox.remove();
+//     pastIcons = document.getElementsByClassName("pawbox");
+//     while(pastIcons.length > 0){
+//         pastIcons[0].parentNode.removeChild(pastIcons[0]);
+//     }
+//     popbox.remove();
 
-    curDate = new Date(Date.parse(curDate) - 86400000);
-    d = curDate.getDate();
-    mo = monthNames[curDate.getMonth()];
+//     curDate = new Date(Date.parse(curDate) - 86400000);
+//     d = curDate.getDate();
+//     mo = monthNames[curDate.getMonth()];
 
-    todayy.innerHTML = mo + " " + d;       
+//     todayy.innerHTML = mo + " " + d;       
     
-    var todayT = new Date();
-    var h = todayT.getHours();
-    var maxTime = 24;
-    var time = parseInt(h / maxTime *100);
+//     var todayT = new Date();
+//     var h = todayT.getHours();
+//     var maxTime = 24;
+//     var time = parseInt(h / maxTime *100);
     
-    //console.log(curDate);
+//     //console.log(curDate);
 
-    //get the walk data for yesterday from the database 
+//     //get the walk data for yesterday from the database 
 
-    var yesterdayRecord = new XMLHttpRequest();
+//     var yesterdayRecord = new XMLHttpRequest();
 
-        yesterdayRecord.onreadystatechange = function() {
-            if (yesterdayRecord.readyState == 4) {
-                walkHistory(yesterdayRecord.responseText);
-            }
-        }
-            console.log(curDate);
+//         yesterdayRecord.onreadystatechange = function() {
+//             if (yesterdayRecord.readyState == 4) {
+//                 walkHistory(yesterdayRecord.responseText);
+//             }
+//         }
+//             console.log(curDate);
         
         
-        function walkHistory(response) {
+//         function walkHistory(response) {
             
-            var walkData = JSON.parse(response);
-            console.log(walkData);
-            for(var i = 0; i < walkData.length; i++) { 
+//             var walkData = JSON.parse(response);
+//             console.log(walkData);
+//             for(var i = 0; i < walkData.length; i++) { 
                 
-                chart = document.getElementById("chart");
-                var aTag = document.createElement('a');
-                var paw = document.createElement('img');
-                var div = document.createElement('div');
-                div.setAttribute("class", "pawbox");
+//                 chart = document.getElementById("chart");
+//                 var aTag = document.createElement('a');
+//                 var paw = document.createElement('img');
+//                 var div = document.createElement('div');
+//                 div.setAttribute("class", "pawbox");
                 
-                aTag.setAttribute("href", "walk-record.php?id="+walkData[i].id);
-                paw.setAttribute("class", "icon");
+//                 aTag.setAttribute("href", "walk-record.php?id="+walkData[i].id);
+//                 paw.setAttribute("class", "icon");
                 
-                //display a blue icon for walks
-                //display a brown icon for walks where the dog pooped hehe
+//                 //display a blue icon for walks
+//                 //display a brown icon for walks where the dog pooped hehe
 
-                    if(walkData[i].poo == "1"){
-                        paw.setAttribute("src", "assets/poopaw.svg")
-                    } else {
-                        paw.setAttribute("src", "assets/paw.svg");
-                    }
+//                     if(walkData[i].poo == "1"){
+//                         paw.setAttribute("src", "assets/poopaw.svg")
+//                     } else {
+//                         paw.setAttribute("src", "assets/paw.svg");
+//                     }
 
-                var time = walkData[i].walktime;
-                var newTime = time.substring(0, 2);
-                var Wtime = parseInt(newTime / maxTime *100);
+//                 var time = walkData[i].walktime;
+//                 var newTime = time.substring(0, 2);
+//                 var Wtime = parseInt(newTime / maxTime *100);
             
-                paw.style.marginLeft = Wtime+"%";
-                div.style.marginLeft = Wtime+"%";
-                aTag.appendChild(paw);
+//                 paw.style.marginLeft = Wtime+"%";
+//                 div.style.marginLeft = Wtime+"%";
+//                 aTag.appendChild(paw);
 
-                div.appendChild(aTag);
+//                 div.appendChild(aTag);
 
-                var span = document.createElement('span');
-                span.setAttribute("class", "hoverpaw");
-                span.innerHTML = walkData[i].walktime;
-                div.appendChild(span);
-                chart.appendChild(div);
-            }
-        }
-        yesterdayRecord.open("POST", "walks-request.php", true);
-        yesterdayRecord.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        yesterdayRecord.send("testing=" + curDate);
+//                 var span = document.createElement('span');
+//                 span.setAttribute("class", "hoverpaw");
+//                 span.innerHTML = walkData[i].walktime;
+//                 div.appendChild(span);
+//                 chart.appendChild(div);
+//             }
+//         }
+//         yesterdayRecord.open("POST", "walks-request.php", true);
+//         yesterdayRecord.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//         yesterdayRecord.send("testing=" + curDate);
 
 
-}
+// }
 
   
 //Add Walk
@@ -244,13 +243,24 @@ function walkfunction(){
                 div.appendChild(aTag);
                 
                 tt = "AM";
-                if (walkData[i].walktime > "12:00"){tt = "PM";} 
+                if (walkData[i].walktime > "12:00"){
+                    var fixTime = walkData[i].walktime.substring(0, 2)-12;
+                    var stayTime = walkData[i].walktime.substring(2, 5);
+                    tt = "PM";
+                    var span = document.createElement('span');
+                    span.setAttribute("class", "hoverpaw");
+                    span.innerHTML = fixTime + stayTime + ' '+tt;
+                    div.appendChild(span);
+                    chart.appendChild(div);
+                    
+                } else {
                 
                 var span = document.createElement('span');
                 span.setAttribute("class", "hoverpaw");
                 span.innerHTML = walkData[i].walktime+ ' '+tt;
                 div.appendChild(span);
                 chart.appendChild(div);
+                }
             }
         }
 

@@ -6,7 +6,7 @@ $dbpassword = "NkXHus3h!6V";
 
 $pdo = new PDO($dsn, $dbusername, $dbpassword);
 
-$testing = $_POST['curDate'];
+$testing = $_POST['dateRequest'];
 //$testing = "2018-12-08T23:31:08.000Z";
 
 $dateRequest = substr($testing, 0,10);

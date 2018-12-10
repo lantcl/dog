@@ -23,6 +23,7 @@ function checkTime(i) {
 }
 
 var kill = document.getElementById("kill");
+var nvm = document.getElementById("nvm");
 var destroy = document.getElementById("destroyRecord");
 var heading = document.getElementById("heading");
 var recordColumns = document.getElementById("recordColumns");
@@ -34,4 +35,5 @@ function deleteFunction(){
     heading.innerHTML = 'Are you really sure?'; 
     destroy.remove();
     kill.style.display = "block";
+    nvm.style.display = "block";
 }

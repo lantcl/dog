@@ -19,7 +19,12 @@ $lastwalk = $stmt->fetch();
 
 $last = $lastwalk["walktime"];
 $tt = "AM";
-if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
+if ($last > '12:00'){
+    $fix1 = substr($last, 0, 2) - 12; 
+    $fix2 = substr($last, 2, 5);
+    $last = $fix1.$fix2;
+    $tt = "PM";
+} 
 
 // $date = new DateTime($lastwalk["time"]);
 // $tt = "AM";

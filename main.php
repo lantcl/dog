@@ -20,7 +20,12 @@ $lastwalk = $stmt->fetch();
 
 $last = $lastwalk["walktime"];
 $tt = "AM";
-if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
+if ($last > '12:00'){
+    $fix1 = substr($last, 0, 2) - 12; 
+    $fix2 = substr($last, 2, 5);
+    $last = $fix1.$fix2;
+    $tt = "PM";
+} 
 
 $stat = $pdo->prepare("SELECT * FROM `status` WHERE `feature` = 1");
 $stat->execute();
@@ -63,8 +68,9 @@ $currentstatus = $stat->fetch();
                     <ul>
                     <li><a href = "main.php">Home</a></li>
                     <li><a href = "pack.php">My Pack</a></li>
-                    <li><a id = "newWalk" href = "add-walk.php">Add Walk</a></li>
-                    <li><a id = "notice" href = "status.php">Update Dog Status</a></li>
+                    <li><a href = "add-walk.php">Add Walk</a></li>
+                    <li><a href = "status.php">Update Dog Status</a></li>
+                    <li><a href = "walk-history.php">Walk History</a></li>
                     </ul>
                 </nav>          
             </section>            
@@ -78,9 +84,9 @@ $currentstatus = $stat->fetch();
         
         <section>
             <div id="daynav">
-            <img id="goback" class= "arrowbutton" src="assets/backbutton.svg" alt="backbutton">
-            <h2 id="today"></h2>
-            <img id="goforward" class= "arrowbutton" src="assets/forwardbutton.svg" alt="forwardbutton">
+            <!-- <img id="goback" class= "arrowbutton" src="assets/backbutton.svg" alt="backbutton"> -->
+            <h1 id="today"></h1>
+            <!-- <img id="goforward" class= "arrowbutton" src="assets/forwardbutton.svg" alt="forwardbutton"> -->
             </div>
         </section>
         <section id="main">

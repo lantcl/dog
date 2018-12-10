@@ -22,7 +22,12 @@ $lastwalk = $stmt->fetch();
 
 $last = $lastwalk["walktime"];
 $tt = "AM";
-if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
+if ($last > '12:00'){
+    $fix1 = substr($last, 0, 2) - 12; 
+    $fix2 = substr($last, 2, 5);
+    $last = $fix1.$fix2;
+    $tt = "PM";
+} 
 
 $walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `walks`.`date`, `walks`.`userid`, `walklength`.`length`, `walks`.`lengthid` FROM `walks` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = '$id'");
 
@@ -102,7 +107,10 @@ $walk->execute();
            </div>
            <br>
             <p id="destroyRecord"class="logInOut">Yes, destroy it</p>
-            <a style="display: none" href="delete-process.php?id=<?php echo($id);?>" id="kill"class="logInOut"><p>Yes, do it</p></a>
+            <a style="display: none" href="delete-process.php?id=<?php echo($id);?>" id="kill"><p>
+            Yes, do it</p></a>
+            <a style="display: none" href="main.php" id="nvm"><class="logInOut"p>
+            Nevermind</p></a>
             <?php }
             ?>
         </div>

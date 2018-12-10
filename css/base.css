@@ -225,7 +225,7 @@ select {
 /* The actual timeline (the vertical ruler) */
 #chart{
   position: relative;
-  top: 100px;
+  top: 40px;
 }
 
 

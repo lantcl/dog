@@ -22,7 +22,12 @@ $lastwalk = $stmt->fetch();
 
 $last = $lastwalk["walktime"];
 $tt = "AM";
-if ($last > '12:00'){$last = $last - '12'; $tt = "PM";} 
+if ($last > '12:00'){
+    $fix1 = substr($last, 0, 2) - 12; 
+    $fix2 = substr($last, 2, 5);
+    $last = $fix1.$fix2;
+    $tt = "PM";
+} 
 
 
 $walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `walks`.`date`, `walks`.`notes`, `walklength`.`length`, `walks`.`lengthid`, `users`.`firstname`, `walks`.`userid`, `walklength`.`badge` FROM `walks` INNER JOIN `users` ON `walks`.`userid` = `users`.`id` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = '$id'");
