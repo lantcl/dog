@@ -64,6 +64,7 @@ if ($last > '12:00'){
                     <li><a href = "pack.php">My Pack</a></li>
                     <li><a id = "newWalk" href = "add-walk.php">Add Walk</a></li>
                     <li><a id = "notice" href = "status.php">Update Dog Status</a></li>
+                    <li><a href = "walk-history.php">Walk History</a></li>
                     </ul>
                 </nav>          
             </section>            

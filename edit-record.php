@@ -30,6 +30,9 @@ if ($last > '12:00'){
 } 
 
 
+$walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `walks`.`date`, `walks`.`notes`, `walklength`.`length`, `walks`.`lengthid`, `users`.`firstname`, `walks`.`userid`, `walklength`.`badge` FROM `walks` INNER JOIN `users` ON `walks`.`userid` = `users`.`id` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = '$id'");
+
+$walk->execute();
 
 
 ?>
@@ -37,7 +40,7 @@ if ($last > '12:00'){
 <!doctype html>
 <html>
     <head>
-        <title>Walk Record</title>
+        <title>Edit Record</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
@@ -78,18 +81,38 @@ if ($last > '12:00'){
 
         <section id="main"> 
             <div class="mainContent">
-        <h1>Walk History</h1>
-        <h2>select a date to view</h2>
-        <p><input id="historyDate" type = "date" name="date"></p>
-        <p><input id="dateSubmit" class="button" type="submit" value="submit"/></p>
-        <div id="records"> 
-        <!-- <img class="smallIcon" src="assets/<?php //echo($row["badge"]);?>" alt="badge icon"> -->
+        <?php
+            while($row = $walk->fetch()) {     
+                ?>  
+        <h1>Walk Record for <?php echo($row["date"]);?></h1>
+        <img id="usericon" src="assets/<?php echo($row["badge"]);?>" alt="badge icon">
+            <form action="edit-walk-process.php" method="POST">
+                <input type = "hidden" name="walkid" value="$id"/>
+                <p><input type = "time" name="walktime" required value="<?php echo($row["walktime"]);?>"></p>
+                <p><select name="lengthid">
+                        <option value="1">quick pee - 5 minutes</option>
+                        <option value="2">around the block - 10 minutes</option>
+                        <option value="3">normal walk - 15-20 minutes</option>
+                        <option value="4">long walk - 25-40 minutes</option>
+                        <option value="5">gold star walk - 25-40 minutes</option>
+                </select></p>
+                <div class="checkboxes">
+                <p>pee</p><input type="checkbox" name="pee" value="1" <?php if($row["pee"] == 1 ){ ?> 
+                    checked <?php } ?>/>
+                <p>poo</p><input type="checkbox" name="poo" value="1" <?php if($row["poo"] == 1 ){ ?> 
+                    checked <?php } ?>/>
+                </div><br>
+                <p><textarea name="notes" placeholder="notes" value="<?php echo($row["notes"]);?>"></textarea></p>
+                <p><input class="button" type="submit" value="submit"/></p>
+            </form>
            </div>
+            <?php }
+            ?>
         </div>
          </section> 
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
         </footer>
-        <script src="js/history-script.js"></script>
+        <script src="js/sub-script.js"></script>
     </body>
 </html>

@@ -38,7 +38,7 @@ $currentstatus = $stat->fetch();
 <!doctype html>
 <html>
     <head>
-        <title>Walk History</title>
+        <title>Edit Profile</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
@@ -65,6 +65,7 @@ $currentstatus = $stat->fetch();
                     <li><a href = "pack.php">My Pack</a></li>
                     <li><a id = "newWalk" href = "add-walk.php">Add Walk</a></li>
                     <li><a id = "notice" href = "status.php">Update Dog Status</a></li>
+                    <li><a href = "walk-history.php">Walk History</a></li>
                     </ul>
                 </nav>          
             </section>            
@@ -77,16 +78,22 @@ $currentstatus = $stat->fetch();
         </section>
         <section id="main">
             <div class="mainContent">
-            <h1>My Profile </h1>
+            <h1> Edit My Profile</h1>
                 <?php while($row2 = $userInfo->fetch()){ ?>
-                    <img id="usericon" src="assets/<?php echo($row2["profilepic"]);?>" alt="profile icon"><br>
-                    <h2><?php echo($row2["firstname"].' '.$row2["lastname"]);?></h2>
-                    <h2><?php echo($row2["phone"]);?></h2>
-                    <h2><?php echo($row2["email"]);?></h2>
+                <form action="update-profile.php" method="POST" enctype= 'multipart/form-data'>
+                    <h2>First Name</h2>
+                    <p><input name="firstname" type="text" value="<?php echo($row2["firstname"]);?>"></p>
+                    <h2>Last Name</h2>
+                    <p><input name="lastname" type="text" value="<?php echo($row2["lastname"]);?>"></p>
+                    <h2>Phone Number</h2>
+                    <p><input name="phone" type="text" value="<?php echo($row2["phone"]);?>"></p>
+                    <h2>Email</h2>
+                    <p><input name="email" type="email" value="<?php echo($row2["email"]);?>"></p>
+                    <h2>Profile Icon</h2>
+                    <p><input name="profilepic" type="file"></p>
+                    <p><input class="button" type="submit" value="update"/></p>
+                </form>
                <?php } ?>
-               <br>
-               <a href="edit-profile.php"><p>Edit Profile</p></a>
-               <a href="logout.php"><p class="logInOut">Log Out</p></a>
             </div>
         </section>
         <footer id="footernav">
