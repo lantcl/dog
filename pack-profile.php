@@ -39,7 +39,7 @@ $currentstatus = $stat->fetch();
 <!doctype html>
 <html>
     <head>
-        <title>Walk History</title>
+        <title>Pack Profile</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">

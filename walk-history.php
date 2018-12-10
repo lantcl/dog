@@ -1,7 +1,9 @@
-<?php 
+<?php
+
 session_start();
 
 $userid = $_SESSION['id'];
+$id = $_GET['id'];
 
 $dsn = "mysql:host=localhost;dbname=lantc_dog;charset=utf8mb4";
 $dbusername = "lantc";
@@ -9,14 +11,12 @@ $dbpassword = "NkXHus3h!6V";
 
 $pdo = new PDO($dsn, $dbusername, $dbpassword);
 
-$userInfo = $pdo->prepare("SELECT * FROM `users` WHERE `id` = $userid");
-$userInfo->execute();
-
-$row = $pdo->prepare("SELECT `users`.`firstname`, `users`.`profilepic`, `dog`.`id`, `dog`.`name`, `dog`.`photo` FROM `users` INNER JOIN `dog` ON `users`.`dogid` = `dog`.`id` WHERE `users`.`id` = '$userid'");
+$row = $pdo->prepare("SELECT * FROM `users` WHERE `id` = $userid");
 $row->execute();
 $user = $row->fetch();
 
 $stmt = $pdo->prepare("SELECT * FROM `walks` WHERE `id` IN (SELECT MAX(`id`) FROM `walks`)");
+
 $stmt->execute();
 $lastwalk = $stmt->fetch();
 
@@ -29,16 +29,15 @@ if ($last > '12:00'){
     $tt = "PM";
 } 
 
-$stat = $pdo->prepare("SELECT * FROM `status` WHERE `feature` = 1");
-$stat->execute();
-$currentstatus = $stat->fetch();
+
 
 
 ?>
+
 <!doctype html>
 <html>
     <head>
-        <title>My Profile</title>
+        <title>Walk Record</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
@@ -75,23 +74,21 @@ $currentstatus = $stat->fetch();
         <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
-        <section id="main">
+
+        <section id="main"> 
             <div class="mainContent">
-            <h1>My Profile </h1>
-                <?php while($row2 = $userInfo->fetch()){ ?>
-                    <img id="usericon" src="assets/<?php echo($row2["profilepic"]);?>" alt="profile icon"><br>
-                    <h2><?php echo($row2["firstname"].' '.$row2["lastname"]);?></h2>
-                    <h2><?php echo($row2["phone"]);?></h2>
-                    <h2><?php echo($row2["email"]);?></h2>
-               <?php } ?>
-               <br>
-               <a href="edit-profile.php"><p>Edit Profile</p></a>
-               <a href="logout.php"><p class="logInOut">Log Out</p></a>
-            </div>
-        </section>
+        <h1>Walk History</h1>
+        <h2>select a date to view</h2>
+        <p><input id="historyDate" type = "date" name="date"></p>
+        <p><input id="dateSubmit" class="button" type="submit" value="submit"/></p>
+        <div id="records"> 
+        <!-- <img class="smallIcon" src="assets/<?php //echo($row["badge"]);?>" alt="badge icon"> -->
+           </div>
+        </div>
+         </section> 
         <footer id="footernav">
                 <h2>Keep track with your pack</h2>
         </footer>
-        <script src="js/script.js"></script>
+        <script src="js/history-script.js"></script>
     </body>
 </html>

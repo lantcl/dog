@@ -118,6 +118,11 @@ li{
   text-align: center; 
 }
 
+#records{
+  display: flex;
+  justify-content: space-evenly;
+}
+
 #recordColumns{
   display: flex;
   justify-content: center;
@@ -135,6 +140,12 @@ li{
 #usericon {
   width:75px;
   height:75px;
+  border-radius: 50%;
+}
+
+.smallIcon {
+  width:35px;
+  height:35px;
   border-radius: 50%;
 }
 

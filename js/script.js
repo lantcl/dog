@@ -260,6 +260,8 @@ function walkfunction(){
                 span.innerHTML = walkData[i].walktime+ ' '+tt;
                 div.appendChild(span);
                 chart.appendChild(div);
+
+                
                 }
             }
         }

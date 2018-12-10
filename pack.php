@@ -41,7 +41,7 @@ $pack->execute();
 <!doctype html>
 <html>
     <head>
-        <title>Walky-Talky</title>
+        <title>My Pack</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/base.css">
         <link rel="stylesheet" type="text/css" href="css/mobile.css">
