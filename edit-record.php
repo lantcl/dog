@@ -29,6 +29,9 @@ if ($last > '12:00'){
     $tt = "PM";
 } 
 
+$stat = $pdo->prepare("SELECT * FROM `status` WHERE `feature` = 1");
+$stat->execute();
+$currentstatus = $stat->fetch();
 
 $walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `walks`.`date`, `walks`.`notes`, `walklength`.`length`, `walks`.`lengthid`, `users`.`firstname`, `walks`.`userid`, `walklength`.`badge` FROM `walks` INNER JOIN `users` ON `walks`.`userid` = `users`.`id` INNER JOIN `walklength` ON `walks`.`lengthid` = `walklength`.`id` WHERE `walks`.`id` = '$id'");
 

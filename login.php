@@ -26,7 +26,9 @@ if ($last > '12:00'){
     $tt = "PM";
 } 
 
-// $date = new DateTime($lastwalk["time"]);
+$stat = $pdo->prepare("SELECT * FROM `status` WHERE `feature` = 1");
+$stat->execute();
+$currentstatus = $stat->fetch();// $date = new DateTime($lastwalk["time"]);
 // $tt = "AM";
 // if ($date > '12:00:00'){$tt = "PM";} 
 

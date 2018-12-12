@@ -35,6 +35,9 @@ $walk = $pdo->prepare("SELECT `walks`.`pee`,`walks`.`poo`, `walks`.`walktime`, `
 
 $walk->execute();
 
+$stat = $pdo->prepare("SELECT * FROM `status` WHERE `feature` = 1");
+$stat->execute();
+$currentstatus = $stat->fetch();
 
 ?>
 

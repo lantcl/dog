@@ -28,7 +28,9 @@ if ($last > '12:00'){
     $tt = "PM";
 } 
 
-
+$stat = $pdo->prepare("SELECT * FROM `status` WHERE `feature` = 1");
+$stat->execute();
+$currentstatus = $stat->fetch();
 ?>
 
 <html>
