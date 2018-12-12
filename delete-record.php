@@ -111,7 +111,17 @@ $currentstatus = $stat->fetch();
                 </div>
                 <div id="rightColumn">
                     <h2><?php echo($row["date"]);?></h2>
-                    <h2><?php echo($row["walktime"]);?></h2>
+                    <h2><?php 
+                        $timeFix = $row["walktime"];
+                        $am = "AM";
+                        if ($timeFix > '12:00'){
+                            $fixtime1 = substr($timeFix, 0, 2) - 12; 
+                            $fixtime2 = substr($timeFix, 2, 5);
+                            $timeFix = $fixtime1.$fixtime2;
+                            $am = "PM";
+                            echo($timeFix.' '.$am);
+                    } else {echo($timeFix.' '.$am);}
+                    ?> </h2>
                     <h2><?php echo($row["firstname"]);?></h2>
                     <h2><?php echo($row["length"]);?></h2>
                     <?php if($row["pee"] == 1 && $row["poo"] == 0){ ?><h2>Pee</h2><?php } 

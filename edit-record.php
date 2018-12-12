@@ -102,7 +102,17 @@ $walk->execute();
         <img id="usericon" src="assets/<?php echo($row["badge"]);?>" alt="badge icon">
             <form action="edit-walk-process.php" method="POST">
                 <input type = "hidden" name="walkid" value="<?php echo($id);?>"/>
-                <p><input type = "time" name="walktime" required value="<?php echo($row["walktime"]);?>"></p>
+                <p><input type = "time" name="walktime" required value="<?php 
+                        $timeFix = $row["walktime"];
+                        $am = "AM";
+                        if ($timeFix > '12:00'){
+                            $fixtime1 = substr($timeFix, 0, 2) - 12; 
+                            $fixtime2 = substr($timeFix, 2, 5);
+                            $timeFix = $fixtime1.$fixtime2;
+                            $am = "PM";
+                            echo($timeFix.' '.$am);
+                    } else {echo($timeFix.' '.$am);}
+                    ?>"></p>
                 <p><select name="lengthid">
                         <option <?php if ($row["lengthid"] == 1){ ?>selected="selected"<?php }?> value="1">5-10 minutes</option >
                         <option <?php if ($row["lengthid"] == 2){ ?>selected="selected"<?php }?> value="2">10-20 minutes</option>
@@ -116,7 +126,7 @@ $walk->execute();
                 <p>poo</p><input type="checkbox" name="poo" value="1" <?php if($row["poo"] == 1 ){ ?> 
                     checked <?php } ?>/>
                 </div><br>
-                <p><textarea name="notes" placeholder="notes" value="<?php echo($row["notes"]);?>"></textarea></p>
+                <p><textarea name="notes" placeholder="<?php echo($row["notes"]);?>" value="<?php echo($row["notes"]);?>"></textarea></p>
                 <p><input class="button" type="submit" value="submit"/></p>
             </form>
            </div>
