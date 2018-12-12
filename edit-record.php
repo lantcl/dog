@@ -81,6 +81,7 @@ $walk->execute();
 
         <section id="main"> 
             <div class="mainContent">
+            <?php if($_SESSION['logged-in'] == true){ ?>  
         <?php
             while($row = $walk->fetch()) {     
                 ?>  
@@ -106,8 +107,10 @@ $walk->execute();
                 <p><input class="button" type="submit" value="submit"/></p>
             </form>
            </div>
-            <?php }
-            ?>
+            <?php } } else { ?>
+        <h1>You must be logged in to update a walk record</h1>
+        <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" class="noticePaws"></a>
+    <?php } ?>
         </div>
          </section> 
         <footer id="footernav">

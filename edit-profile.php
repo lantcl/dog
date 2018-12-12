@@ -78,6 +78,7 @@ $currentstatus = $stat->fetch();
         </section>
         <section id="main">
             <div class="mainContent">
+            <?php if($_SESSION['logged-in'] == true){?>
             <h1> Edit My Profile</h1>
                 <?php while($row2 = $userInfo->fetch()){ ?>
                 <form action="update-profile.php" method="POST" enctype= 'multipart/form-data'>
@@ -93,7 +94,10 @@ $currentstatus = $stat->fetch();
                     <p><input name="profilepic" type="file"></p>
                     <p><input class="button" type="submit" value="update"/></p>
                 </form>
-               <?php } ?>
+               <?php } } else { ?>
+        	<h1>You must be logged in to edit a profile</h1>
+        	<a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" class="noticePaws"></a>
+    		<?php } ?>
             </div>
         </section>
         <footer id="footernav">

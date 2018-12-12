@@ -82,6 +82,7 @@ $walk->execute();
 
         <section id="main"> 
             <div class="mainContent">
+        <?php if($_SESSION['logged-in'] == true){ ?>  
         <?php
             while($row = $walk->fetch()) {     
                 ?>  
@@ -112,8 +113,10 @@ $walk->execute();
             Yes, do it</p></a>
             <a style="display: none" href="main.php" id="nvm"><class="logInOut"p>
             Nevermind</p></a>
-            <?php }
-            ?>
+            <?php } } else { ?>
+            <h1>You must be logged in to delete a record</h1>
+        <a href = "login.php"><img src="assets/poopaw.svg" alt="paw icon" class="noticePaws"></a>
+        <?php } ?>
         </div>
          </section> 
         <footer id="footernav">
