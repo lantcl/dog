@@ -229,8 +229,9 @@ select {
 .dropdown:hover .dropbtn {
     background-color: #3E8E41;
 }
-
-
+.mobileNav{
+  display: none;
+}
 /* timeline */
 
 /* The actual timeline (the vertical ruler) */

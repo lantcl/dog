@@ -12,7 +12,6 @@ $poo = $_POST['poo'];
 $notes = $_POST['notes'];
 $walkid = $_POST['walkid'];
 
-//possibly need to concantinate date and time inputs to submit to the time column in the databse 
 
 $dsn = "mysql:host=localhost;dbname=lantc_dog;charset=utf8mb4";
 $dbusername = "lantc";

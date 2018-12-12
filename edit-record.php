@@ -70,7 +70,17 @@ $walk->execute();
                     <li><a href = "walk-history.php">Walk History</a></li>
                     </ul>
                 </nav>          
-            </section>            
+            </section> 
+            <section class="mobileNav">
+                <nav class="">
+                    <ul>
+                    <li><a href = "pack.php">My Pack</a></li>
+                    <li><a href = "add-walk.php">Add Walk</a></li>
+                    <li><a href = "status.php">Update Status</a></li>
+                    <li><a href = "walk-history.php">Walk History</a></li>
+                    </ul>
+                </nav>          
+            </section>             
             <?php if($_SESSION['logged-in'] == true){ ?>            
             <div id="statusBar"> 
                 <h2><?php echo($user["name"].' '.$currentstatus["status"]);?></h2>
@@ -88,14 +98,14 @@ $walk->execute();
         <h1>Walk Record for <?php echo($row["date"]);?></h1>
         <img id="usericon" src="assets/<?php echo($row["badge"]);?>" alt="badge icon">
             <form action="edit-walk-process.php" method="POST">
-                <input type = "hidden" name="walkid" value="$id"/>
+                <input type = "hidden" name="walkid" value="<?php echo($id);?>"/>
                 <p><input type = "time" name="walktime" required value="<?php echo($row["walktime"]);?>"></p>
                 <p><select name="lengthid">
-                        <option value="1">quick pee - 5 minutes</option>
-                        <option value="2">around the block - 10 minutes</option>
-                        <option value="3">normal walk - 15-20 minutes</option>
-                        <option value="4">long walk - 25-40 minutes</option>
-                        <option value="5">gold star walk - 25-40 minutes</option>
+                        <option <?php if ($row["lengthid"] == 1){ ?>selected="selected"<?php }?> value="1">5-10 minutes</option >
+                        <option <?php if ($row["lengthid"] == 2){ ?>selected="selected"<?php }?> value="2">10-20 minutes</option>
+                        <option <?php if ($row["lengthid"] == 3){ ?>selected="selected"<?php }?>value="3">20-30 minutes</option>
+                        <option <?php if ($row["lengthid"] == 4){ ?>selected="selected"<?php }?> value="4">40+ minutes</option >
+                        <option <?php if ($row["lengthid"] == 5){ ?>selected="selected"<?php }?> value="5">Dog Park</option >
                 </select></p>
                 <div class="checkboxes">
                 <p>pee</p><input type="checkbox" name="pee" value="1" <?php if($row["pee"] == 1 ){ ?> 

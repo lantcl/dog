@@ -70,7 +70,17 @@ $walk->execute();
                     <li><a href = "walk-history.php">Walk History</a></li>
                     </ul>
                 </nav>          
-            </section>            
+            </section>
+            <section class="mobileNav">
+                <nav class="">
+                    <ul>
+                    <li><a href = "pack.php">My Pack</a></li>
+                    <li><a href = "add-walk.php">Add Walk</a></li>
+                    <li><a href = "status.php">Update Status</a></li>
+                    <li><a href = "walk-history.php">Walk History</a></li>
+                    </ul>
+                </nav>          
+            </section>              
             <?php if($_SESSION['logged-in'] == true){ ?>            
             <div id="statusBar"> 
                 <h2><?php echo($user["name"].' '.$currentstatus["status"]);?></h2>
@@ -95,7 +105,20 @@ $walk->execute();
                     <h2>notes</h2>
                 </div>
                 <div id="rightColumn">
-                    <h2><?php echo($row["walktime"]);?></h2>
+                    <h2>
+                    <?php 
+                        $timeFix = $row["walktime"];
+                        $am = "AM";
+                        if ($timeFix > '12:00'){
+                            $fixtime1 = substr($timeFix, 0, 2) - 12; 
+                            $fixtime2 = substr($timeFix, 2, 5);
+                            $timeFix = $fixtime1.$fixtime2;
+                            $am = "PM";
+                            echo($timeFix.' '.$am);
+                    } else {echo($timeFix.' '.$am);}
+                    ?>      
+                    </h2>
+                    
                     <h2><?php echo($row["firstname"]);?></h2>
                     <h2><?php echo($row["length"]);?></h2>
                     <?php if($row["pee"] == 1 && $row["poo"] == 0){ ?><h2>Pee</h2><?php } 

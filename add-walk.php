@@ -63,7 +63,17 @@ if ($last > '12:00'){
                     <li><a href = "walk-history.php">Walk History</a></li>
                     </ul>
                 </nav>          
-            </section>            
+         </section>
+         <section class="mobileNav">
+                <nav class="">
+                    <ul>
+                    <li><a href = "pack.php">My Pack</a></li>
+                    <li><a href = "add-walk.php">Add Walk</a></li>
+                    <li><a href = "status.php">Update Status</a></li>
+                    <li><a href = "walk-history.php">Walk History</a></li>
+                    </ul>
+                </nav>          
+            </section>              
             <?php if($_SESSION['logged-in'] == true){ ?>            
             <div id="statusBar"> 
                 <h2><?php echo($user["name"].' '.$currentstatus["status"]);?></h2>
@@ -71,6 +81,7 @@ if ($last > '12:00'){
         <?php } ?>
             <h2><span id="datetime"></span></h2>
         </section>
+
 
         <section id="main">
         <div class="mainContent"> 
@@ -84,11 +95,11 @@ if ($last > '12:00'){
                 <p><input type = "date" name="date" autocomplete="on" required></p>
                 <p><input type = "time" name="walktime" required></p>
 				<p><select name="lengthid">
-                        <option value="1">quick pee - 5 minutes</option>
-                        <option value="2">around the block - 10 minutes</option>
-                        <option value="3">normal walk - 15-20 minutes</option>
-                        <option value="4">long walk - 25-40 minutes</option>
-                        <option value="5">gold star walk - 25-40 minutes</option>
+                        <option value="1">5-10 minutes</option>
+                        <option value="2">10-20 minutes</option>
+                        <option value="3">20-30 minutes</option>
+                        <option value="4">40+ minutes</option>
+                        <option value="5">Dog Park</option>
                 </select></p>
                 <div class="checkboxes">
 				<p>pee</p><input type="checkbox" name="pee" value="1" />
