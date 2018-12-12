@@ -102,17 +102,7 @@ $walk->execute();
         <img id="usericon" src="assets/<?php echo($row["badge"]);?>" alt="badge icon">
             <form action="edit-walk-process.php" method="POST">
                 <input type = "hidden" name="walkid" value="<?php echo($id);?>"/>
-                <p><input type = "time" name="walktime" required value="<?php 
-                        $timeFix = $row["walktime"];
-                        $am = "AM";
-                        if ($timeFix > '12:00'){
-                            $fixtime1 = substr($timeFix, 0, 2) - 12; 
-                            $fixtime2 = substr($timeFix, 2, 5);
-                            $timeFix = $fixtime1.$fixtime2;
-                            $am = "PM";
-                            echo($timeFix.' '.$am);
-                    } else {echo($timeFix.' '.$am);}
-                    ?>"></p>
+                <p><input type = "time" name="walktime" required value="<?php echo($row["walktime"]);?>"</p>
                 <p><select name="lengthid">
                         <option <?php if ($row["lengthid"] == 1){ ?>selected="selected"<?php }?> value="1">5-10 minutes</option >
                         <option <?php if ($row["lengthid"] == 2){ ?>selected="selected"<?php }?> value="2">10-20 minutes</option>
